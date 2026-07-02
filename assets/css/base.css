@@ -1,0 +1,275 @@
+/* ==========================================================================
+   BASE — Variables CSS, reset de tipografía y anulaciones de Milligram
+   ========================================================================== */
+
+/* ── Variables ─────────────────────────────────────────────────────────────── */
+:root {
+    /* Colores de marca */
+    --zz-primary:       #3f82ef;
+    --zz-primary-dark:  #2563d4;
+    --zz-dark:          #1a2c4a;
+    --zz-dark-lighter:  #243a5e;
+
+    /* Paleta neutra */
+    --zz-text:          #3d4554;
+    --zz-text-light:    #7a8599;
+    --zz-bg:            #ffffff;
+    --zz-surface:       #f5f5f5;
+    --zz-surface-alt:   #eef1f6;
+    --zz-border:        #e0e0e0;
+
+    /* Feedback */
+    --zz-success:       #22c55e;
+    --zz-danger:        #ef4444;
+    --zz-warning:       #f59e0b;
+
+    /* Tipografía */
+    --zz-font:          -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, Oxygen, Ubuntu, Cantarell, sans-serif;
+    --zz-font-size:     16px;
+    --zz-line-height:   1.65;
+
+    /* Layout */
+    --zz-container:     1320px;
+    --zz-gap:           24px;
+    --zz-section-gap:   64px;
+
+    /* Forma */
+    --zz-radius:        4px;
+    --zz-radius-lg:     8px;
+    --zz-radius-pill:   999px;
+
+    /* Sombras */
+    --zz-shadow-sm:     0 1px 3px rgba(26, 44, 74, 0.06);
+    --zz-shadow:        0 4px 16px rgba(26, 44, 74, 0.10);
+    --zz-shadow-lg:     0 12px 32px rgba(26, 44, 74, 0.14);
+    --zz-shadow-hover:  0 8px 24px rgba(63, 130, 239, 0.20);
+
+    /* Transiciones */
+    --zz-transition:    0.18s ease;
+    --zz-transition-lg: 0.28s ease;
+
+    /* Header */
+    --zz-header-height:    60px;
+    --zz-topbar-height:    36px;
+    --zz-header-z:         99999;
+}
+
+/* ── Reset global ───────────────────────────────────────────────────────────── */
+*,
+*::before,
+*::after {
+    box-sizing: border-box;
+}
+
+html {
+    font-size: var(--zz-font-size);
+    scroll-behavior: smooth;
+}
+
+body {
+    font-family: var(--zz-font);
+    font-size: 1rem;
+    line-height: var(--zz-line-height);
+    color: var(--zz-text);
+    background-color: var(--zz-bg);
+    margin: 0;
+    padding: 0;
+    -webkit-font-smoothing: antialiased;
+    -moz-osx-font-smoothing: grayscale;
+}
+
+/* ── Anular tipografía de Milligram ─────────────────────────────────────────── */
+/* Milligram establece Raleway y tamaños muy grandes — los sobreescribimos */
+body,
+button,
+input,
+select,
+textarea {
+    font-family: var(--zz-font);
+}
+
+h1, h2, h3, h4, h5, h6 {
+    font-family: var(--zz-font);
+    font-weight: 700;
+    line-height: 1.25;
+    color: var(--zz-dark);
+    margin-top: 0;
+    margin-bottom: 0.5rem;
+}
+
+h1 { font-size: 2.4rem; }
+h2 { font-size: 2.0rem; }
+h3 { font-size: 1.6rem; }
+h4 { font-size: 1.3rem; }
+h5 { font-size: 1.1rem; }
+h6 { font-size: 1.0rem; }
+
+p {
+    margin-top: 0;
+    margin-bottom: 1rem;
+}
+
+/* ── Anular colores de Milligram ────────────────────────────────────────────── */
+a {
+    color: var(--zz-primary);
+    text-decoration: none;
+    transition: color var(--zz-transition);
+}
+
+a:hover,
+a:focus {
+    color: var(--zz-primary-dark);
+    text-decoration: underline;
+}
+
+/* ── Anular botones de Milligram ────────────────────────────────────────────── */
+/* Milligram usa pill-shape morado — rediseñamos rectangular */
+.button,
+button,
+input[type="submit"],
+input[type="reset"],
+input[type="button"] {
+    display: inline-flex;
+    align-items: center;
+    justify-content: center;
+    gap: 6px;
+    padding: 10px 20px;
+    font-family: var(--zz-font);
+    font-size: 0.875rem;
+    font-weight: 600;
+    line-height: 1;
+    color: #fff;
+    background-color: var(--zz-primary);
+    border: 2px solid var(--zz-primary);
+    border-radius: var(--zz-radius);
+    cursor: pointer;
+    text-decoration: none;
+    transition: background-color var(--zz-transition), border-color var(--zz-transition), color var(--zz-transition);
+    letter-spacing: 0.02em;
+}
+
+.button:hover,
+button:hover,
+input[type="submit"]:hover,
+input[type="button"]:hover {
+    background-color: var(--zz-primary-dark);
+    border-color: var(--zz-primary-dark);
+    color: #fff;
+    text-decoration: none;
+}
+
+.button--outline,
+.button.button-secondary {
+    color: var(--zz-primary);
+    background-color: transparent;
+}
+
+.button--outline:hover,
+.button.button-secondary:hover {
+    color: #fff;
+    background-color: var(--zz-primary);
+}
+
+.button--dark {
+    background-color: var(--zz-dark);
+    border-color: var(--zz-dark);
+}
+
+.button--dark:hover {
+    background-color: var(--zz-dark-lighter);
+    border-color: var(--zz-dark-lighter);
+}
+
+/* ── Inputs — anular Milligram ──────────────────────────────────────────────── */
+input[type="text"],
+input[type="email"],
+input[type="tel"],
+input[type="url"],
+input[type="number"],
+input[type="search"],
+input[type="password"],
+select,
+textarea {
+    width: 100%;
+    padding: 10px 14px;
+    font-family: var(--zz-font);
+    font-size: 0.9rem;
+    color: var(--zz-text);
+    background-color: var(--zz-bg);
+    border: 1px solid var(--zz-border);
+    border-radius: var(--zz-radius);
+    transition: border-color var(--zz-transition), box-shadow var(--zz-transition);
+    outline: none;
+    appearance: none;
+    -webkit-appearance: none;
+}
+
+input[type="text"]:focus,
+input[type="email"]:focus,
+input[type="tel"]:focus,
+input[type="url"]:focus,
+input[type="number"]:focus,
+input[type="search"]:focus,
+input[type="password"]:focus,
+select:focus,
+textarea:focus {
+    border-color: var(--zz-primary);
+    box-shadow: 0 0 0 3px rgba(63, 130, 239, 0.15);
+}
+
+textarea {
+    resize: vertical;
+    min-height: 120px;
+}
+
+label {
+    display: block;
+    font-size: 0.875rem;
+    font-weight: 600;
+    color: var(--zz-text);
+    margin-bottom: 6px;
+}
+
+/* ── Imágenes ───────────────────────────────────────────────────────────────── */
+img,
+svg {
+    max-width: 100%;
+    height: auto;
+    vertical-align: middle;
+}
+
+/* ── Accesibilidad ──────────────────────────────────────────────────────────── */
+.screen-reader-text {
+    clip: rect(1px, 1px, 1px, 1px);
+    clip-path: inset(50%);
+    height: 1px;
+    overflow: hidden;
+    position: absolute;
+    white-space: nowrap;
+    width: 1px;
+}
+
+.skip-link {
+    background: var(--zz-primary);
+    color: #fff;
+    font-size: 0.875rem;
+    font-weight: 600;
+    padding: 8px 16px;
+    position: absolute;
+    top: -100px;
+    left: 16px;
+    z-index: 999;
+    border-radius: 0 0 var(--zz-radius) var(--zz-radius);
+    transition: top 0.2s;
+}
+
+.skip-link:focus {
+    top: 0;
+    color: #fff;
+    text-decoration: none;
+}
+
+/* ── Utilidades ─────────────────────────────────────────────────────────────── */
+.text-center { text-align: center; }
+.text-right  { text-align: right; }
+.visually-hidden { @extend .screen-reader-text; }

@@ -1,0 +1,176 @@
+/* ==========================================================================
+   DARK MODE — Variables y overrides para modo oscuro
+   Estrategia dual: sistema (prefers-color-scheme) + clase manual (.dark-mode)
+   ========================================================================== */
+
+/* ── Variables modo oscuro via clase JS ─────────────────────────────────────── */
+html.dark-mode {
+    --zz-bg:          #0f1923;
+    --zz-surface:     #1a2535;
+    --zz-surface-alt: #212f40;
+    --zz-border:      #2d3f54;
+    --zz-text:        #c8d4e6;
+    --zz-text-light:  #7a8fa8;
+    --zz-dark:        #e8edf5;
+    --zz-dark-lighter:#c4cfe0;
+}
+
+/* ── Variables modo oscuro via preferencia del sistema ─────────────────────── */
+/* Activa solo cuando el usuario no ha forzado modo claro manualmente */
+@media (prefers-color-scheme: dark) {
+    html:not(.light-mode) {
+        --zz-bg:          #0f1923;
+        --zz-surface:     #1a2535;
+        --zz-surface-alt: #212f40;
+        --zz-border:      #2d3f54;
+        --zz-text:        #c8d4e6;
+        --zz-text-light:  #7a8fa8;
+        --zz-dark:        #e8edf5;
+        --zz-dark-lighter:#c4cfe0;
+    }
+}
+
+/* ── Correcciones específicas en modo oscuro ────────────────────────────────── */
+html.dark-mode .site-header,
+html:not(.light-mode):is(:where(@media (prefers-color-scheme: dark)) *) .site-header {
+    background-color: var(--zz-bg);
+    border-bottom-color: var(--zz-border);
+}
+
+html.dark-mode .site-header__main {
+    background-color: var(--zz-bg);
+    border-bottom-color: var(--zz-border);
+}
+
+html.dark-mode .product-card {
+    background: var(--zz-surface);
+    border-color: var(--zz-border);
+}
+
+html.dark-mode .contact-form {
+    background: var(--zz-surface);
+}
+
+html.dark-mode input[type="text"],
+html.dark-mode input[type="email"],
+html.dark-mode input[type="tel"],
+html.dark-mode input[type="url"],
+html.dark-mode input[type="number"],
+html.dark-mode input[type="search"],
+html.dark-mode input[type="password"],
+html.dark-mode select,
+html.dark-mode textarea {
+    background-color: var(--zz-surface);
+    border-color: var(--zz-border);
+    color: var(--zz-text);
+}
+
+html.dark-mode .wc-sidebar {
+    background: var(--zz-surface);
+}
+
+html.dark-mode .accordion__trigger {
+    background: var(--zz-surface);
+    color: var(--zz-dark);
+}
+
+html.dark-mode .accordion__trigger:hover {
+    background: var(--zz-surface-alt);
+}
+
+html.dark-mode .widget ul li {
+    border-bottom-color: var(--zz-border);
+}
+
+html.dark-mode .post-card {
+    background: var(--zz-surface);
+    border-color: var(--zz-border);
+}
+
+html.dark-mode .woocommerce div.product .woocommerce-tabs ul.tabs {
+    background: var(--zz-surface);
+    border-bottom-color: var(--zz-border);
+}
+
+html.dark-mode .woocommerce div.product .woocommerce-tabs ul.tabs li.active a {
+    background: var(--zz-bg);
+}
+
+html.dark-mode .sp__benefits {
+    background: var(--zz-surface);
+}
+
+html.dark-mode .about-values {
+    background: var(--zz-surface);
+}
+
+html.dark-mode .value-card {
+    background: var(--zz-surface-alt);
+}
+
+html.dark-mode table.cart th {
+    background: var(--zz-surface);
+}
+
+/* Mismo bloque para prefers-color-scheme */
+@media (prefers-color-scheme: dark) {
+    html:not(.light-mode) .site-header {
+        background-color: var(--zz-bg);
+        border-bottom-color: var(--zz-border);
+    }
+
+    html:not(.light-mode) .site-header__main {
+        background-color: var(--zz-bg);
+        border-bottom-color: var(--zz-border);
+    }
+
+    html:not(.light-mode) .product-card {
+        background: var(--zz-surface);
+        border-color: var(--zz-border);
+    }
+
+    html:not(.light-mode) .contact-form {
+        background: var(--zz-surface);
+    }
+
+    html:not(.light-mode) input[type="text"],
+    html:not(.light-mode) input[type="email"],
+    html:not(.light-mode) input[type="tel"],
+    html:not(.light-mode) input[type="url"],
+    html:not(.light-mode) input[type="number"],
+    html:not(.light-mode) input[type="search"],
+    html:not(.light-mode) input[type="password"],
+    html:not(.light-mode) select,
+    html:not(.light-mode) textarea {
+        background-color: var(--zz-surface);
+        border-color: var(--zz-border);
+        color: var(--zz-text);
+    }
+
+    html:not(.light-mode) .wc-sidebar {
+        background: var(--zz-surface);
+    }
+
+    html:not(.light-mode) .accordion__trigger {
+        background: var(--zz-surface);
+        color: var(--zz-dark);
+    }
+
+    html:not(.light-mode) .post-card {
+        background: var(--zz-surface);
+        border-color: var(--zz-border);
+    }
+
+    html:not(.light-mode) .woocommerce div.product .woocommerce-tabs ul.tabs {
+        background: var(--zz-surface);
+        border-bottom-color: var(--zz-border);
+    }
+
+    html:not(.light-mode) .sp__benefits {
+        background: var(--zz-surface);
+    }
+
+    html:not(.light-mode) .value-card {
+        background: var(--zz-surface-alt);
+    }
+}

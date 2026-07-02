@@ -1,0 +1,14 @@
+/*
+Theme Name:        ZZTheme
+Theme URI:         https://github.com/zztheme
+Description:       Tema WooCommerce profesional con Milligram CSS y JavaScript puro. Inspirado en el diseño Ignavo Auto Parts.
+Version:           1.0.0
+Requires at least: 6.0
+Tested up to:      6.7
+Requires PHP:      7.4
+Author:            ZZTheme
+Text Domain:       zztheme
+Tags:              woocommerce, custom-menu, featured-images, custom-logo, e-commerce, two-columns, right-sidebar
+
+Los estilos reales están en assets/css/ y se cargan desde inc/enqueue.php.
+*/

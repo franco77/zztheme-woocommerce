@@ -1,0 +1,1988 @@
+/* ==========================================================================
+   WOOCOMMERCE — Overrides específicos de WooCommerce
+   ========================================================================== */
+
+/* ── Grid de productos ──────────────────────────────────────────────────────── */
+.woocommerce ul.products,
+.woocommerce-page ul.products {
+  list-style: none;
+  padding: 0;
+  margin: 0 !important;
+  display: grid !important;
+  grid-template-columns: repeat(3, 1fr);
+  gap: 20px;
+  align-items: stretch;
+}
+
+/* Clearfix de WC se convierte en grid item — eliminarlo */
+.woocommerce ul.products::before,
+.woocommerce ul.products::after,
+.woocommerce-page ul.products::before,
+.woocommerce-page ul.products::after {
+  display: none !important;
+}
+
+/* Anular el float + width% que WooCommerce inyecta vía .columns-N */
+.woocommerce ul.products li.product,
+.woocommerce-page ul.products li.product,
+.woocommerce ul.products.columns-3 li.product,
+.woocommerce-page ul.products.columns-3 li.product,
+.woocommerce ul.products.columns-4 li.product,
+.woocommerce-page ul.products.columns-4 li.product {
+  width: auto !important;
+  float: none !important;
+  margin: 0 !important;
+  clear: none !important;
+  height: 100%;
+}
+
+/* ── Rating ─────────────────────────────────────────────────────────────────── */
+.woocommerce .star-rating,
+.woocommerce-page .star-rating {
+  display: flex;
+  align-items: center;
+  font-size: 0.8rem;
+  color: var(--zz-warning);
+  margin-bottom: 6px;
+}
+
+/* ── Precio ─────────────────────────────────────────────────────────────────── */
+.woocommerce .price,
+.woocommerce-page .price {
+  font-size: 1rem;
+  font-weight: 700;
+  color: var(--zz-dark);
+}
+
+/* ── Plugin WC Rewards: badge general ──────────────────────────────────────── */
+.wc-rewards-badge {
+  padding: 10px 12px !important;
+}
+
+/* ── Plugin WC Rewards: puntos por producto en loop ─────────────────────────── */
+.wc-rewards-product-points.wc-rewards-loop-product {
+  display: flex !important;
+  flex-direction: row !important;
+  flex-wrap: nowrap !important;
+  align-items: center !important;
+  gap: 5px !important;
+  font-size: 0.78rem !important;
+  font-weight: 400 !important;
+  color: var(--zz-text-light) !important;
+  background: var(--zz-surface) !important;
+  border: 1px solid var(--zz-border) !important;
+  border-left: 3px solid var(--zz-primary) !important;
+  border-radius: var(--zz-radius) !important;
+  padding: 3px 8px !important;
+  margin-top: 6px !important;
+  width: auto !important;
+  max-width: none !important;
+}
+
+.wc-rewards-product-points.wc-rewards-loop-product .wc-rewards-icon {
+  flex-shrink: 0 !important;
+  line-height: 1 !important;
+}
+
+.wc-rewards-product-points.wc-rewards-loop-product .wc-rewards-points-text,
+.wc-rewards-product-points.wc-rewards-loop-product .wc-rewards-points-text * {
+  white-space: nowrap !important;
+  display: inline !important;
+}
+
+.wc-rewards-product-points.wc-rewards-loop-product
+  .wc-rewards-points-text
+  strong {
+  font-weight: 700 !important;
+  color: var(--zz-dark) !important;
+}
+
+.woocommerce .price ins,
+.woocommerce-page .price ins {
+  text-decoration: none;
+  color: var(--zz-danger);
+}
+
+.woocommerce .price del,
+.woocommerce-page .price del {
+  font-size: 0.85em;
+  color: var(--zz-text-light);
+  margin-right: 4px;
+}
+
+/* ── Botón add to cart ──────────────────────────────────────────────────────── */
+.woocommerce a.button,
+.woocommerce button.button,
+.woocommerce input.button {
+  background-color: var(--zz-primary);
+  color: #fff;
+  border-color: var(--zz-primary);
+  border-radius: var(--zz-radius);
+  font-family: var(--zz-font);
+  font-weight: 600;
+  font-size: 0.8rem;
+  padding: 9px 16px;
+  transition: all var(--zz-transition);
+  text-decoration: none;
+
+  display: inline-flex; /* evita que tome todo el ancho */
+  align-items: center; /* centra verticalmente */
+  justify-content: center; /* centra horizontalmente */
+}
+
+.woocommerce a.button:hover,
+.woocommerce button.button:hover,
+.woocommerce input.button:hover {
+  background-color: var(--zz-primary-dark);
+  border-color: var(--zz-primary-dark);
+  color: #fff;
+}
+
+.woocommerce a.button.added,
+.woocommerce a.button.loading {
+  padding-right: 36px;
+}
+
+/* ── Enlace "Ver carrito" que aparece tras añadir al carrito ────────────────── */
+a.added_to_cart.wc-forward {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  width: 100%;
+  margin-top: 6px;
+  padding: 6px 16px;
+  font-size: 0.78rem;
+  font-weight: 600;
+  font-family: var(--zz-font);
+  color: var(--zz-primary);
+  background: transparent;
+  border: 1px solid var(--zz-primary);
+  border-radius: var(--zz-radius);
+  text-decoration: none;
+  text-align: center;
+  transition: all var(--zz-transition);
+  box-sizing: border-box;
+}
+
+a.added_to_cart.wc-forward:hover {
+  background: var(--zz-primary);
+  color: #fff;
+  text-decoration: none;
+}
+
+/* ── Galería de producto (WC no aplica su CSS porque falta .woocommerce wrapper) */
+.sp__gallery {
+  position: relative;
+}
+
+/* WC aplica float:left/right + width:48% en div.images y div.summary — anulamos para que el grid CSS tome control */
+.sp__gallery .woocommerce-product-gallery,
+.sp .summary {
+  width: 100% !important;
+  float: none !important;
+  margin: 0;
+}
+
+.sp__gallery .woocommerce-product-gallery__image {
+  width: 100%;
+}
+
+.sp__gallery .woocommerce-product-gallery__image a {
+  display: block;
+  width: 100%;
+}
+
+.sp__gallery .woocommerce-product-gallery__image img {
+  width: 100%;
+  height: auto;
+  display: block;
+  border-radius: var(--zz-radius-lg);
+  border: 1px solid var(--zz-border);
+}
+
+/* Franja de miniaturas */
+.sp__gallery .flex-control-thumbs {
+  list-style: none;
+  margin: 8px 0 0;
+  padding: 0;
+  display: flex;
+  gap: 8px;
+  flex-wrap: wrap;
+}
+
+.sp__gallery .flex-control-thumbs li {
+  width: calc(25% - 6px);
+  line-height: 0;
+  cursor: pointer;
+}
+
+.sp__gallery .flex-control-thumbs img {
+  width: 100%;
+  aspect-ratio: 1 / 1;
+  object-fit: cover;
+  border-radius: var(--zz-radius);
+  border: 2px solid transparent;
+  opacity: 0.55;
+  cursor: pointer;
+  transition:
+    opacity var(--zz-transition),
+    border-color var(--zz-transition);
+}
+
+.sp__gallery .flex-control-thumbs img:hover,
+.sp__gallery .flex-control-thumbs .flex-active img {
+  opacity: 1;
+  border-color: var(--zz-primary);
+}
+
+/* Badge onsale sobre la galería */
+.sp__gallery .onsale,
+.sp__gallery span.onsale {
+  position: absolute !important;
+  top: 12px !important;
+  left: 12px !important;
+  right: auto !important;
+  z-index: 2 !important;
+}
+
+/* ── WC Rewards: chip de puntos en producto individual ──────────────────────── */
+.wc-rewards-product-points.wc-rewards-single-product {
+  margin: 12px 0 !important;
+  padding: 12px 16px !important;
+  border-radius: var(--zz-radius) !important;
+}
+
+/* Sobreescribir el gradiente morado por defecto con los colores del tema */
+.wc-rewards-single-product.bg-gradient-purple {
+  background: linear-gradient(
+    135deg,
+    var(--zz-primary) 0%,
+    var(--zz-primary-dark) 100%
+  ) !important;
+}
+
+.wc-rewards-single-product .wc-rewards-points-badge {
+  font-size: 0.95rem !important;
+}
+
+.wc-rewards-points-badge-overlay.position-bottom-left {
+  bottom: 30px !important;
+  left: 10px !important;
+}
+
+.wc-rewards-single-product .wc-rewards-message strong {
+  font-size: 1.05rem !important;
+}
+
+/* ── Single product ─────────────────────────────────────────────────────────── */
+.sp {
+  display: grid;
+  grid-template-columns: 5fr 6fr;
+  gap: 48px;
+  align-items: start;
+  padding: var(--zz-section-gap) 0;
+}
+
+.sp__gallery {
+  /* position: sticky; */
+  top: calc(var(--zz-header-height) + var(--zz-topbar-height) + 24px);
+}
+
+.sp__badge {
+  display: inline-block;
+  background: var(--zz-danger);
+  color: #fff;
+  font-size: 0.72rem;
+  font-weight: 700;
+  padding: 4px 12px;
+  border-radius: var(--zz-radius-pill);
+  text-transform: uppercase;
+  letter-spacing: 0.05em;
+  margin-bottom: 12px;
+}
+
+.sp__title {
+  font-size: 1.9rem;
+  margin-bottom: 10px;
+  color: var(--zz-dark);
+  line-height: 1.2;
+}
+
+.sp__meta {
+  display: flex;
+  flex-wrap: wrap;
+  align-items: center;
+  gap: 14px;
+  margin-bottom: 16px;
+  font-size: 0.85rem;
+  color: var(--zz-text-light);
+  border-bottom: 1px solid var(--zz-border);
+  padding-bottom: 16px;
+}
+
+.sp__stock {
+  display: inline-flex;
+  align-items: center;
+  gap: 4px;
+  font-size: 0.8rem;
+  font-weight: 600;
+}
+
+.sp__stock--in {
+  color: var(--zz-success);
+}
+.sp__stock--out {
+  color: var(--zz-danger);
+}
+
+/* Precio — sale grande + original tachado */
+.sp__price {
+  display: flex;
+  align-items: baseline;
+  gap: 10px;
+  flex-wrap: wrap;
+  margin-bottom: 16px;
+}
+
+.sp__price .price {
+  font-size: 2rem;
+  font-weight: 700;
+  line-height: 1;
+}
+
+.sp__price .price ins {
+  text-decoration: none;
+  color: var(--zz-success);
+}
+
+.sp__price .price del {
+  font-size: 1.1rem;
+  color: var(--zz-text-light);
+  font-weight: 400;
+}
+
+.sp__price .price del .woocommerce-Price-amount {
+  color: inherit;
+}
+
+.sp__price .price:not(:has(ins)) .woocommerce-Price-amount {
+  color: var(--zz-dark);
+}
+
+.sp__excerpt {
+  color: var(--zz-text-light);
+  font-size: 0.9rem;
+  margin-bottom: 20px;
+  line-height: 1.7;
+}
+
+/* Add to cart: cantidad + botón en la misma fila */
+.sp__add-to-cart {
+  margin-bottom: 16px;
+}
+
+.sp__add-to-cart form.cart,
+.sp__add-to-cart .woocommerce-variation-add-to-cart {
+  display: flex;
+  align-items: stretch;
+  gap: 12px;
+  flex-wrap: wrap;
+}
+
+.sp__add-to-cart form.cart .quantity,
+.sp__add-to-cart .woocommerce-variation-add-to-cart .quantity {
+  display: flex;
+  align-items: stretch;
+  border: 1px solid var(--zz-border);
+  border-radius: var(--zz-radius);
+  overflow: hidden;
+  margin: 0;
+  background: var(--zz-bg);
+  flex-shrink: 0;
+}
+
+.sp__add-to-cart form.cart .quantity label,
+.sp__add-to-cart .woocommerce-variation-add-to-cart .quantity label {
+  display: none;
+}
+
+.sp__add-to-cart .quantity input.qty {
+  width: 48px;
+  text-align: center;
+  border: none !important;
+  border-left: 1px solid var(--zz-border) !important;
+  border-right: 1px solid var(--zz-border) !important;
+  border-radius: 0 !important;
+  padding: 0 !important;
+  margin: 0 !important;
+  font-size: 1rem;
+  font-weight: 600;
+  box-shadow: none !important;
+  height: auto;
+  min-height: 50px;
+}
+
+/* Botones +/− inyectados por JS */
+.sp__qty-btn {
+  background: none;
+  border: none;
+  width: 40px;
+  min-height: 50px;
+  font-size: 1.4rem;
+  font-weight: 300;
+  color: var(--zz-text);
+  cursor: pointer;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  padding: 0;
+  margin: 0;
+  line-height: 1;
+  transition:
+    background var(--zz-transition),
+    color var(--zz-transition);
+}
+
+.sp__qty-btn:hover {
+  background: var(--zz-surface);
+  color: var(--zz-dark);
+}
+
+.sp__add-to-cart .single_add_to_cart_button {
+  flex: 1;
+  font-size: 1rem !important;
+  padding: 14px 24px !important;
+  height: auto;
+  min-width: 160px;
+  white-space: nowrap;
+}
+
+/* Beneficios con icono SVG */
+.sp__benefits {
+  list-style: none;
+  padding: 14px 16px;
+  margin: 16px 0 0;
+  background: var(--zz-surface);
+  border-radius: var(--zz-radius);
+  border: 1px solid var(--zz-border);
+}
+
+.sp__benefits li {
+  font-size: 0.875rem;
+  color: var(--zz-text);
+  padding: 6px 0;
+  display: flex;
+  align-items: flex-start;
+  gap: 10px;
+  border-bottom: 1px solid var(--zz-border);
+}
+
+.sp__benefits li:last-child {
+  border-bottom: none;
+  padding-bottom: 0;
+}
+
+.sp__benefits li:first-child {
+  padding-top: 0;
+}
+
+.sp__benefits li::before {
+  content: "";
+  display: block;
+  width: 18px;
+  height: 18px;
+  min-width: 18px;
+  background-color: var(--zz-success);
+  border-radius: 50%;
+  background-image: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 24 24' fill='none' stroke='%23fff' stroke-width='3' stroke-linecap='round' stroke-linejoin='round'%3E%3Cpolyline points='20 6 9 17 4 12'/%3E%3C/svg%3E");
+  background-size: 11px;
+  background-position: center;
+  background-repeat: no-repeat;
+  margin-top: 2px;
+  flex-shrink: 0;
+}
+
+/* Sección de soporte telefónico */
+.sp__support {
+  display: flex;
+  align-items: center;
+  gap: 14px;
+  padding: 14px 16px;
+  background: var(--zz-surface);
+  border: 1px solid var(--zz-border);
+  border-radius: var(--zz-radius);
+  margin: 12px 0;
+}
+
+.sp__support-icon {
+  width: 44px;
+  height: 44px;
+  min-width: 44px;
+  background: var(--zz-success);
+  border-radius: 50%;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  color: #fff;
+}
+
+.sp__support-icon svg {
+  width: 22px;
+  height: 22px;
+}
+
+.sp__support-body {
+  flex: 1;
+}
+
+.sp__support-label {
+  font-size: 0.8rem;
+  color: var(--zz-text-light);
+  margin: 0 0 2px;
+}
+
+.sp__support-phone {
+  font-size: 1rem;
+  font-weight: 700;
+  color: var(--zz-dark);
+  text-decoration: none;
+  display: inline-block;
+}
+
+.sp__support-phone:hover {
+  color: var(--zz-primary);
+  text-decoration: none;
+}
+
+/* Botones de compartir */
+.sp__share {
+  display: flex;
+  align-items: center;
+  gap: 8px;
+  margin: 12px 0;
+  flex-wrap: wrap;
+}
+
+.sp__share-label {
+  font-size: 0.85rem;
+  font-weight: 600;
+  color: var(--zz-text);
+  margin-right: 4px;
+}
+
+.sp__share-btn {
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  width: 34px;
+  height: 34px;
+  border-radius: 50%;
+  border: 1px solid var(--zz-border);
+  color: var(--zz-text);
+  text-decoration: none;
+  transition: all var(--zz-transition);
+}
+
+.sp__share-btn:hover {
+  background: var(--zz-primary);
+  border-color: var(--zz-primary);
+  color: #fff;
+  text-decoration: none;
+}
+
+.sp__share-btn svg {
+  width: 16px;
+  height: 16px;
+  fill: currentColor;
+}
+
+/* Taxonomías */
+.sp__taxonomies {
+  font-size: 0.85rem;
+  color: var(--zz-text-light);
+  margin-top: 12px;
+  border-top: 1px solid var(--zz-border);
+  padding-top: 12px;
+}
+
+.sp__tax {
+  display: flex;
+  align-items: baseline;
+  gap: 6px;
+  margin-bottom: 6px;
+}
+
+.sp__tax-label {
+  font-weight: 600;
+  color: var(--zz-text);
+  white-space: nowrap;
+}
+
+.sp__tax a {
+  color: var(--zz-text-light);
+}
+
+.sp__tax a:hover {
+  color: var(--zz-primary);
+}
+
+.sp__tabs {
+  grid-column: 1 / -1;
+  margin-top: 48px;
+  padding-top: 32px;
+  border-top: 1px solid var(--zz-border);
+}
+
+.sp__actions-row {
+  display: flex;
+  gap: 16px;
+  margin-bottom: 12px;
+  font-size: 0.85rem;
+}
+
+/* ── Tabs WooCommerce ───────────────────────────────────────────────────────── */
+
+/* Contenedor: tarjeta con borde y radio */
+.sp__tabs .woocommerce-tabs,
+.woocommerce div.product .woocommerce-tabs {
+  border: 1px solid var(--zz-border);
+  border-radius: var(--zz-radius-lg);
+  overflow: hidden;
+  background: var(--zz-bg);
+  box-shadow: var(--zz-shadow-sm);
+}
+
+/* Barra de tabs */
+.sp__tabs .woocommerce-tabs ul.tabs,
+.woocommerce div.product .woocommerce-tabs ul.tabs {
+  display: flex;
+  list-style: none;
+  margin: 0;
+  padding: 0 4px;
+  background: var(--zz-surface);
+  border-bottom: 1px solid var(--zz-border);
+  gap: 0;
+  overflow: visible;
+}
+
+/* WC inyecta pseudo-elements tipo "folder tab" — los eliminamos */
+.sp__tabs .woocommerce-tabs ul.tabs::before,
+.sp__tabs .woocommerce-tabs ul.tabs::after,
+.woocommerce div.product .woocommerce-tabs ul.tabs::before,
+.woocommerce div.product .woocommerce-tabs ul.tabs::after,
+.sp__tabs .woocommerce-tabs ul.tabs li::before,
+.sp__tabs .woocommerce-tabs ul.tabs li::after,
+.woocommerce div.product .woocommerce-tabs ul.tabs li::before,
+.woocommerce div.product .woocommerce-tabs ul.tabs li::after {
+  display: none !important;
+  content: none !important;
+}
+
+/* Ítem de tab */
+.sp__tabs .woocommerce-tabs ul.tabs li,
+.woocommerce div.product .woocommerce-tabs ul.tabs li {
+  margin: 0;
+  position: relative;
+  border: none !important;
+  background: transparent !important;
+  border-radius: 0 !important;
+}
+
+/* Enlace de tab */
+.sp__tabs .woocommerce-tabs ul.tabs li a,
+.woocommerce div.product .woocommerce-tabs ul.tabs li a {
+  display: block;
+  padding: 15px 22px;
+  font-size: 0.9rem;
+  font-weight: 600;
+  color: var(--zz-text-light);
+  text-decoration: none;
+  border: none !important;
+  background: transparent;
+  position: relative;
+  transition: color var(--zz-transition);
+  margin-bottom: -1px; /* solapa el border-bottom del ul para que el active lo tape */
+  border-bottom: 3px solid transparent !important;
+}
+
+.sp__tabs .woocommerce-tabs ul.tabs li a:hover,
+.woocommerce div.product .woocommerce-tabs ul.tabs li a:hover {
+  color: var(--zz-dark);
+  text-decoration: none;
+  background: transparent;
+}
+
+/* Tab activo */
+.sp__tabs .woocommerce-tabs ul.tabs li.active a,
+.woocommerce div.product .woocommerce-tabs ul.tabs li.active a {
+  color: var(--zz-primary);
+  background: var(--zz-bg) !important;
+  border-bottom: 3px solid var(--zz-primary) !important;
+  border-radius: 0 !important;
+}
+
+/* Panel de contenido */
+.sp__tabs .woocommerce-tabs .panel,
+.woocommerce div.product .woocommerce-tabs .panel {
+  padding: 28px 32px;
+  margin: 0;
+  border: none;
+  background: var(--zz-bg);
+}
+
+/* Ocultar paneles inactivos */
+.sp__tabs .woocommerce-tabs .panel:not(.active-panel) {
+  display: none;
+}
+
+/* Tipografía dentro del panel */
+.sp__tabs .woocommerce-tabs .panel h2 {
+  font-size: 1.1rem;
+  margin-bottom: 12px;
+  color: var(--zz-dark);
+}
+
+.sp__tabs .woocommerce-tabs .panel p {
+  font-size: 0.9rem;
+  color: var(--zz-text);
+  line-height: 1.75;
+  margin-bottom: 12px;
+}
+
+/* Valoraciones: formulario y listado */
+.sp__tabs #tab-reviews .woocommerce-Reviews-title {
+  font-size: 1rem;
+  font-weight: 700;
+  color: var(--zz-dark);
+  margin-bottom: 16px;
+}
+
+.sp__tabs #tab-reviews .comment-form-rating label {
+  font-size: 0.875rem;
+  font-weight: 600;
+}
+
+.sp__tabs #tab-reviews .stars a {
+  color: var(--zz-warning);
+  font-size: 1.2rem;
+}
+
+.sp__tabs #tab-reviews .comment-respond {
+  margin-top: 24px;
+  padding-top: 24px;
+  border-top: 1px solid var(--zz-border);
+}
+
+/* ── Mensajes WooCommerce ───────────────────────────────────────────────────── */
+.woocommerce-message,
+.woocommerce-info,
+.woocommerce-error {
+  list-style: none;
+  margin: 0 0 16px;
+  padding: 12px 16px 12px 44px;
+  border-radius: var(--zz-radius);
+  font-size: 0.9rem;
+  position: relative;
+}
+
+.woocommerce-message {
+  background: rgba(34, 197, 94, 0.1);
+  border: 1px solid rgba(34, 197, 94, 0.3);
+  color: #15803d;
+}
+
+.woocommerce-info {
+  background: rgba(63, 130, 239, 0.1);
+  border: 1px solid rgba(63, 130, 239, 0.3);
+  color: var(--zz-primary-dark);
+}
+
+.woocommerce-error {
+  background: rgba(239, 68, 68, 0.1);
+  border: 1px solid rgba(239, 68, 68, 0.3);
+  color: #b91c1c;
+}
+
+/* ── Carrito ────────────────────────────────────────────────────────────────── */
+.woocommerce table.cart {
+  width: 100%;
+  border-collapse: collapse;
+}
+
+.woocommerce table.cart th,
+.woocommerce table.cart td {
+  padding: 12px 16px;
+  border-bottom: 1px solid var(--zz-border);
+  font-size: 0.9rem;
+}
+
+.woocommerce table.cart th {
+  background: var(--zz-surface);
+  font-weight: 700;
+  font-size: 0.8rem;
+  text-transform: uppercase;
+  letter-spacing: 0.05em;
+  color: var(--zz-text-light);
+}
+
+/* ── Botones de acción principal (checkout, carrito, proceed) ───────────────── */
+/* WooCommerce usa .alt para el botón primario — lo pintamos con el color del tema */
+.woocommerce a.button.alt,
+.woocommerce button.button.alt,
+.woocommerce input.button.alt,
+.woocommerce #place_order,
+.woocommerce .checkout-button {
+  background-color: var(--zz-primary) !important;
+  border-color: var(--zz-primary) !important;
+  color: #fff !important;
+}
+
+.woocommerce a.button.alt:hover,
+.woocommerce button.button.alt:hover,
+.woocommerce input.button.alt:hover,
+.woocommerce #place_order:hover,
+.woocommerce .checkout-button:hover {
+  background-color: var(--zz-primary-dark) !important;
+  border-color: var(--zz-primary-dark) !important;
+  color: #fff !important;
+}
+
+/* ── Fluid Checkout: z-index por debajo del header ──────────────────────────── */
+/* El plugin usa elementos sticky con z-index alto que tapan el header (z:99999) */
+[class*="fc-"][class*="sticky"],
+[class*="fc-"][class*="floating"],
+[class*="fluid-checkout"][class*="sticky"],
+.fc-checkout-header,
+.fc-progress-bar,
+.fc-sticky-alert-bar,
+.fc-order-summary__inner-wrapper {
+  z-index: 9998 !important;
+}
+
+/* ── Checkout cupón ─────────────────────────────────────────────────────────── */
+.checkout-coupon-inline {
+  margin-bottom: 16px;
+}
+
+.checkout-coupon-toggle {
+  background: none;
+  border: none;
+  color: var(--zz-primary);
+  font-size: 0.875rem;
+  cursor: pointer;
+  padding: 0;
+  text-decoration: underline;
+  font-family: var(--zz-font);
+}
+
+.checkout-coupon-row {
+  display: flex;
+  gap: 8px;
+  margin-top: 10px;
+}
+
+.checkout-coupon-row input {
+  flex: 1;
+  min-width: 200px;
+}
+
+/* Cupón en el carrito */
+.woocommerce table.cart .coupon #coupon_code {
+  min-width: 200px;
+}
+
+/* ── My Account (estilos base — el bloque principal está al final del archivo) */
+.woocommerce-account .woocommerce-MyAccount-navigation {
+  float: none;
+  width: auto;
+}
+
+.woocommerce-account .woocommerce-MyAccount-content {
+  float: none;
+  width: auto;
+}
+
+/* ── Shop sidebar ───────────────────────────────────────────────────────────── */
+.shop-sidebar {
+  display: flex;
+  flex-direction: column;
+}
+
+/* Botón limpiar filtros */
+.sidebar-reset {
+  display: inline-flex;
+  align-items: center;
+  gap: 6px;
+  font-size: 0.8rem;
+  font-weight: 600;
+  color: var(--zz-danger);
+  text-decoration: none;
+  padding: 12px 20px;
+  border-bottom: 1px solid var(--zz-border);
+  transition: background var(--zz-transition);
+  width: 100%;
+}
+
+.sidebar-reset:hover {
+  background: rgba(239, 68, 68, 0.05);
+  color: var(--zz-danger);
+  text-decoration: none;
+}
+
+/* Secciones planas */
+.sidebar-section {
+  border-bottom: 1px solid var(--zz-border);
+}
+
+.sidebar-section:last-child {
+  border-bottom: none;
+}
+
+/* Titulo de sección */
+.sidebar-section__title {
+  display: flex;
+  align-items: center;
+  gap: 8px;
+  font-size: 0.95rem;
+  font-weight: 700;
+  text-transform: none;
+  letter-spacing: 0;
+  color: var(--zz-dark);
+  padding: 16px 20px 12px;
+  margin: 0;
+  background: none;
+  border-bottom: none;
+}
+
+.sidebar-section__title svg {
+  flex-shrink: 0;
+  color: var(--zz-text-light);
+}
+
+/* Lista de categorías */
+.sidebar-categories,
+.sidebar-availability {
+  list-style: none;
+  margin: 0;
+  padding: 0 0 8px;
+}
+
+/* Sub-categories hidden by default */
+.sidebar-categories ul.children {
+  list-style: none;
+  margin: 0;
+  padding: 0;
+  display: none;
+}
+
+.sidebar-categories .cat-item.is-expanded > ul.children {
+  display: block;
+}
+
+/* Category row */
+.cat-item {
+  margin: 0;
+}
+
+.cat-item__link,
+.availability-link {
+  display: flex;
+  align-items: center;
+  gap: 10px;
+  padding: 7px 20px;
+  font-size: 0.875rem;
+  color: var(--zz-text);
+  text-decoration: none;
+  transition: color var(--zz-transition);
+  position: relative;
+  cursor: pointer;
+}
+
+.cat-item__link:hover,
+.availability-link:hover {
+  color: var(--zz-primary);
+  text-decoration: none;
+  background: none;
+}
+
+/* Checkbox visual via ::before */
+.cat-item__link::before {
+  content: "";
+  display: block;
+  width: 16px;
+  height: 16px;
+  min-width: 16px;
+  border: 1.5px solid #c8c8c8;
+  border-radius: 3px;
+  background: #fff;
+  flex-shrink: 0;
+  transition: all var(--zz-transition);
+}
+
+.cat-item__link:hover::before {
+  border-color: var(--zz-primary);
+}
+
+/* Category name */
+.cat-item__name {
+  flex: 1;
+  line-height: 1.3;
+}
+
+/* Badge de conteo */
+.cat-item__count {
+  font-size: 0.8rem;
+  color: var(--zz-text-light);
+  flex-shrink: 0;
+}
+
+/* Expand sub-categories button */
+.cat-expand {
+  background: none;
+  border: none;
+  padding: 0 20px 0 0;
+  font-size: 1rem;
+  line-height: 1;
+  color: var(--zz-text-light);
+  cursor: pointer;
+  flex-shrink: 0;
+  font-weight: 300;
+  margin-left: auto;
+  transition: color var(--zz-transition);
+  height: 100%;
+  display: flex;
+  align-items: center;
+}
+
+.cat-expand:hover {
+  color: var(--zz-primary);
+}
+
+/* Active category — checked checkbox */
+.cat-item.is-active > .cat-item__link {
+  color: var(--zz-dark);
+  font-weight: 600;
+}
+
+.cat-item.is-active > .cat-item__link::before {
+  background: var(--zz-primary);
+  border-color: var(--zz-primary);
+  background-image: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 24 24' fill='none' stroke='%23fff' stroke-width='3.5' stroke-linecap='round' stroke-linejoin='round'%3E%3Cpolyline points='20 6 9 17 4 12'/%3E%3C/svg%3E");
+  background-size: 10px;
+  background-position: center;
+  background-repeat: no-repeat;
+}
+
+/* Sub-categories indented */
+.sidebar-categories ul.children .cat-item__link {
+  padding-left: 46px;
+  font-size: 0.85rem;
+  color: var(--zz-text-light);
+}
+
+.sidebar-categories ul.children .cat-item__link::before {
+  width: 14px;
+  height: 14px;
+  min-width: 14px;
+}
+
+/* Disponibilidad */
+.availability-link {
+  padding-left: 20px;
+  padding-right: 20px;
+}
+
+.availability-link svg {
+  color: var(--zz-success);
+  flex-shrink: 0;
+}
+
+/* ── Precio — Widget WooCommerce ────────────────────────────────────────────── */
+.sidebar-section .price_slider_wrapper {
+  padding: 4px 20px 20px;
+}
+
+.sidebar-section .price_slider {
+  margin-bottom: 20px;
+  height: 4px;
+  background: var(--zz-border);
+  border-radius: var(--zz-radius-pill);
+}
+
+.sidebar-section .ui-slider-range {
+  background: var(--zz-primary);
+  border-radius: var(--zz-radius-pill);
+}
+
+.sidebar-section .ui-slider-handle {
+  width: 16px;
+  height: 16px;
+  background: #fff;
+  border: 2px solid var(--zz-primary);
+  border-radius: 50%;
+  top: -6px;
+  cursor: pointer;
+  box-shadow: 0 1px 4px rgba(0, 0, 0, 0.15);
+  transition: box-shadow var(--zz-transition);
+  outline: none;
+}
+
+.sidebar-section .ui-slider-handle:hover,
+.sidebar-section .ui-slider-handle:focus {
+  box-shadow: 0 0 0 4px rgba(63, 130, 239, 0.2);
+}
+
+.sidebar-section .price_slider_amount {
+  display: flex;
+  align-items: center;
+  gap: 10px;
+  flex-wrap: wrap;
+  margin-top: 12px;
+}
+
+.sidebar-section .price_slider_amount .price_label {
+  font-size: 0.85rem;
+  color: var(--zz-text-light);
+  flex: 1;
+  white-space: nowrap;
+  order: 3;
+}
+
+.sidebar-section .price_slider_amount .price_label .from,
+.sidebar-section .price_slider_amount .price_label .to {
+  font-weight: 600;
+  color: var(--zz-dark);
+}
+
+.sidebar-section .price_slider_amount input[type="text"] {
+  flex: 1;
+  min-width: 0;
+  padding: 8px 10px !important;
+  font-size: 0.875rem !important;
+  text-align: center;
+  height: auto !important;
+  margin: 0 !important;
+}
+
+.sidebar-section .price_slider_amount button {
+  background: var(--zz-surface) !important;
+  color: var(--zz-text) !important;
+  border: 1px solid var(--zz-border) !important;
+  border-color: var(--zz-border) !important;
+  font-size: 0.85rem !important;
+  font-weight: 600 !important;
+  padding: 8px 16px !important;
+  border-radius: var(--zz-radius) !important;
+  height: auto !important;
+  margin: 0 !important;
+  order: 4;
+  transition: all var(--zz-transition) !important;
+}
+
+.sidebar-section .price_slider_amount button:hover {
+  background: var(--zz-dark) !important;
+  color: #fff !important;
+  border-color: var(--zz-dark) !important;
+}
+
+/* Widget registrado en el sidebar de WP */
+.wc-sidebar .widget {
+  border-bottom: 1px solid var(--zz-border);
+  padding: 16px 20px;
+}
+
+.wc-sidebar .widget:last-child {
+  border-bottom: none;
+}
+
+.wc-sidebar .widget-title,
+.wc-sidebar .widgettitle {
+  font-size: 0.95rem;
+  font-weight: 700;
+  color: var(--zz-dark);
+  margin-bottom: 12px;
+  text-transform: none;
+  letter-spacing: 0;
+}
+
+/* ── Productos relacionados: 4 columnas ─────────────────────────────────────── */
+.woocommerce .related.products ul.products,
+.woocommerce-page .related.products ul.products {
+  grid-template-columns: repeat(4, 1fr);
+}
+
+section.related.products {
+  margin-top: 35px;
+}
+
+/* ── Responsive WC ──────────────────────────────────────────────────────────── */
+@media (max-width: 1024px) {
+  .woocommerce ul.products,
+  .woocommerce-page ul.products {
+    grid-template-columns: repeat(2, 1fr);
+  }
+
+  .woocommerce .related.products ul.products,
+  .woocommerce-page .related.products ul.products {
+    grid-template-columns: repeat(2, 1fr);
+  }
+}
+
+@media (max-width: 768px) {
+  .woocommerce ul.products,
+  .woocommerce-page ul.products {
+    grid-template-columns: repeat(2, 1fr);
+  }
+
+  .sp {
+    grid-template-columns: 1fr;
+    gap: 24px;
+  }
+
+  .sp__gallery {
+    position: static;
+  }
+
+  .sp__tabs {
+    grid-column: 1;
+  }
+
+  .sp__tabs .woocommerce-tabs ul.tabs li a,
+  .woocommerce div.product .woocommerce-tabs ul.tabs li a {
+    padding: 12px 14px;
+    font-size: 0.85rem;
+  }
+
+  .sp__tabs .woocommerce-tabs .panel,
+  .woocommerce div.product .woocommerce-tabs .panel {
+    padding: 20px 16px;
+  }
+
+  .sp__title {
+    font-size: 1.5rem;
+  }
+
+  .sp__price .price {
+    font-size: 1.6rem;
+  }
+
+  .sp__add-to-cart form.cart,
+  .sp__add-to-cart .woocommerce-variation-add-to-cart {
+    flex-wrap: nowrap;
+  }
+}
+
+@media (max-width: 480px) {
+  .woocommerce ul.products,
+  .woocommerce-page ul.products {
+    grid-template-columns: 1fr 1fr;
+    gap: 12px;
+  }
+}
+
+/* ── WooCommerce Pagination ──────────────────────────────────────────────────── */
+
+/* Centrar el bloque */
+.woocommerce-pagination {
+  display: flex;
+  justify-content: center;
+  margin-top: 40px;
+}
+
+/* Reset del ul — WC añade border + white-space:nowrap + float */
+.woocommerce nav.woocommerce-pagination ul,
+.woocommerce-pagination ul.page-numbers {
+  border: none !important;
+  display: flex !important;
+  align-items: center !important;
+  flex-wrap: wrap !important;
+  gap: 4px !important;
+  white-space: normal !important;
+  list-style: none !important;
+  margin: 0 !important;
+  padding: 0 !important;
+}
+
+/* Reset del li — WC añade float + border-right */
+.woocommerce nav.woocommerce-pagination ul li,
+.woocommerce-pagination ul.page-numbers li {
+  float: none !important;
+  border-right: none !important;
+  margin: 0 !important;
+  padding: 0 !important;
+  overflow: visible !important;
+  display: block !important;
+}
+
+/* Base de cada elemento — supera especificidad WC (0,2,4) con !important */
+.woocommerce nav.woocommerce-pagination ul li a,
+.woocommerce nav.woocommerce-pagination ul li span {
+  display: inline-flex !important;
+  align-items: center !important;
+  justify-content: center !important;
+  min-width: 40px !important;
+  height: 40px !important;
+  padding: 0 10px !important;
+  font-size: 0.875rem !important;
+  font-weight: 500 !important;
+  line-height: 1 !important;
+  color: var(--zz-text) !important;
+  background: var(--zz-bg) !important;
+  border: 1px solid var(--zz-border) !important;
+  border-radius: var(--zz-radius) !important;
+  text-decoration: none !important;
+  transition:
+    background var(--zz-transition),
+    border-color var(--zz-transition),
+    color var(--zz-transition) !important;
+  outline: none !important;
+  cursor: pointer !important;
+}
+
+/* Hover */
+.woocommerce nav.woocommerce-pagination ul li a:hover {
+  background: var(--zz-primary) !important;
+  border-color: var(--zz-primary) !important;
+  color: #fff !important;
+}
+
+/* Pagina activa */
+.woocommerce nav.woocommerce-pagination ul li span.current {
+  background: var(--zz-primary) !important;
+  border-color: var(--zz-primary) !important;
+  color: #fff !important;
+  font-weight: 700 !important;
+  cursor: default !important;
+}
+
+/* Puntos suspensivos */
+.woocommerce nav.woocommerce-pagination ul li span.dots {
+  background: transparent !important;
+  border-color: transparent !important;
+  color: var(--zz-text-light) !important;
+  cursor: default !important;
+  min-width: 28px !important;
+  letter-spacing: 0.05em !important;
+}
+
+/* Prev / Next — separador extra y estilo diferenciado */
+.woocommerce nav.woocommerce-pagination ul li a.prev,
+.woocommerce nav.woocommerce-pagination ul li a.next {
+  font-size: 1.1rem !important;
+  font-weight: 300 !important;
+  color: var(--zz-dark) !important;
+  background: var(--zz-surface) !important;
+  border-color: var(--zz-border) !important;
+}
+
+.woocommerce nav.woocommerce-pagination ul li a.prev:hover,
+.woocommerce nav.woocommerce-pagination ul li a.next:hover {
+  background: var(--zz-dark) !important;
+  border-color: var(--zz-dark) !important;
+  color: #fff !important;
+}
+
+/* Espacio extra entre flechas y números */
+.woocommerce-pagination ul.page-numbers li:has(a.prev),
+.woocommerce-pagination ul.page-numbers li:has(a.next) {
+  margin: 0 6px !important;
+}
+
+@media (max-width: 480px) {
+  .woocommerce nav.woocommerce-pagination ul li a,
+  .woocommerce nav.woocommerce-pagination ul li span {
+    min-width: 34px !important;
+    height: 34px !important;
+    font-size: 0.8rem !important;
+  }
+}
+
+/* ==========================================================================
+   MI CUENTA — Login, Registro, Dashboard, Pedidos, Direcciones
+   ========================================================================== */
+
+/* Espacio vertical en la pagina de cuenta */
+.woocommerce-account .wc-main {
+  padding-top: var(--zz-section-gap);
+  padding-bottom: var(--zz-section-gap);
+}
+
+/* ── Contenedor raíz: flex centrado para login y dashboard ─────────────────── */
+.woocommerce-account .woocommerce {
+  display: flex;
+  flex-wrap: wrap;
+  align-items: flex-start;
+  justify-content: center;
+  gap: 0;
+}
+
+/* El bloque de avisos siempre ocupa todo el ancho */
+.woocommerce-account .woocommerce > .woocommerce-notices-wrapper {
+  flex: 0 0 100%;
+}
+
+/* ── Formularios de login / registro ────────────────────────────────────────── */
+
+/* col2-set: por defecto columna centrada (solo login, sin registro) */
+.woocommerce-account .woocommerce > .col2-set {
+  flex: 0 0 100%;
+  display: grid;
+  grid-template-columns: 1fr;
+  gap: 28px;
+  align-items: start;
+  max-width: 420px;
+  margin: 0 auto;
+  width: 100%;
+}
+
+/* Cuando hay columna de registro: dos columnas a pantalla completa */
+.woocommerce-account .woocommerce > .col2-set:has(.u-column2) {
+  grid-template-columns: 1fr 1fr;
+  max-width: none;
+}
+
+/* Tarjeta de cada columna — anula width:48% y float:left de WC */
+.woocommerce-account .col2-set .u-column1,
+.woocommerce-account .col2-set .u-column2 {
+  float: none !important;
+  width: 100% !important;
+  background: var(--zz-bg);
+  border: 1px solid var(--zz-border);
+  border-radius: var(--zz-radius-lg);
+  padding: 40px 36px;
+  box-shadow: var(--zz-shadow-sm);
+  box-sizing: border-box;
+}
+
+/* Título dentro de cada tarjeta */
+.woocommerce-account .col2-set h2 {
+  font-size: 1.2rem;
+  font-weight: 700;
+  color: var(--zz-dark);
+  text-align: center;
+  margin: 0 0 20px;
+  padding-bottom: 16px;
+  border-bottom: 2px solid var(--zz-border);
+}
+
+/* Anular el width fijo y borde que WC aplica a form.login / form.register */
+.woocommerce form.login,
+.woocommerce form.register,
+.woocommerce form.checkout_coupon {
+  width: 100% !important;
+  border: none !important;
+  padding: 0 !important;
+  margin: 0 !important;
+  border-radius: 0 !important;
+  box-shadow: none !important;
+}
+
+/* ── Estructura directa: h2 + form como hijos de .woocommerce (sin col2-set) ── */
+
+/* El wrapper flex centra todo en columna */
+.woocommerce-account .woocommerce > h2,
+.woocommerce-account .woocommerce > form.woocommerce-form-login {
+  flex: 0 0 100%;
+  max-width: 480px;
+  width: 100%;
+  box-sizing: border-box;
+  margin-left: auto !important;
+  margin-right: auto !important;
+}
+
+/* h2 — parte superior de la tarjeta */
+.woocommerce-account .woocommerce > h2 {
+  text-align: center;
+  font-size: 1.3rem;
+  font-weight: 700;
+  color: var(--zz-dark);
+  padding: 28px 36px 18px;
+  margin-bottom: 0 !important;
+}
+
+/* form — parte inferior de la tarjeta */
+.woocommerce-account .woocommerce > form.woocommerce-form-login {
+  background: var(--zz-bg);
+  border: 1px solid var(--zz-border);
+  border-top: none !important;
+  border-radius: 0 0 var(--zz-radius-lg) var(--zz-radius-lg);
+  padding: 28px 36px 36px !important;
+  margin-top: 0 !important;
+  box-shadow: var(--zz-shadow);
+}
+
+/* Filas de campo */
+.woocommerce-account .woocommerce-form-row {
+  margin-bottom: 16px !important;
+}
+
+/* Inputs — anular altura fija de WC */
+.woocommerce-account .woocommerce-Input,
+.woocommerce-account input.input-text {
+  width: 100% !important;
+  height: auto !important;
+  padding: 10px 14px !important;
+  font-size: 0.9rem !important;
+  font-family: var(--zz-font) !important;
+}
+
+/* Fila de checkbox "remember me" */
+.woocommerce-account .woocommerce-form__label-for-checkbox {
+  display: inline-flex;
+  align-items: center;
+  gap: 8px;
+  font-size: 0.875rem;
+  font-weight: 400;
+  color: var(--zz-text);
+  cursor: pointer;
+}
+
+.woocommerce-account .woocommerce-form__input-checkbox {
+  width: auto !important;
+  height: auto !important;
+  accent-color: var(--zz-primary);
+  flex-shrink: 0;
+  margin: 0;
+}
+
+/* Fila de botón + enlace de contraseña olvidada */
+.woocommerce-account .woocommerce-form-login .form-row:last-child {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  flex-wrap: wrap;
+  gap: 12px;
+  margin-top: 8px;
+}
+
+/* Botones de submit dentro de los forms de cuenta */
+.woocommerce-account .woocommerce-form-login__submit,
+.woocommerce-account .woocommerce-form-register__submit {
+  width: 100% !important;
+  padding: 11px 28px !important;
+  font-size: 0.875rem !important;
+}
+
+/* Enlace "¿Olvidaste tu contraseña?" */
+.woocommerce-account .woocommerce-LostPassword a,
+.woocommerce-account .lost_password a {
+  font-size: 0.82rem;
+  color: var(--zz-text-light);
+  text-decoration: underline;
+  transition: color var(--zz-transition);
+}
+
+.woocommerce-account .woocommerce-LostPassword a:hover,
+.woocommerce-account .lost_password a:hover {
+  color: var(--zz-primary);
+}
+
+/* Gap entre nav y contenido en el dashboard (logged in) */
+.woocommerce-account .woocommerce > .woocommerce-MyAccount-navigation,
+.woocommerce-account .woocommerce > .woocommerce-MyAccount-content {
+  margin-top: 0;
+}
+
+.woocommerce-account .woocommerce:has(.woocommerce-MyAccount-navigation) {
+  gap: 28px;
+}
+
+/* ── Usuario autenticado: sidebar nav ───────────────────────────────────────── */
+.woocommerce-MyAccount-navigation {
+  flex: 0 0 240px;
+  background: var(--zz-bg);
+  border: 1px solid var(--zz-border);
+  border-radius: var(--zz-radius-lg);
+  overflow: hidden;
+  box-shadow: var(--zz-shadow-sm);
+}
+
+/* Panel de usuario: avatar + nombre */
+.account-nav-user {
+  display: flex;
+  align-items: center;
+  gap: 12px;
+  padding: 18px 20px;
+  border-bottom: 2px solid var(--zz-border);
+  background: var(--zz-surface);
+}
+
+.account-nav-user__avatar {
+  flex-shrink: 0;
+  width: 44px;
+  height: 44px;
+  border-radius: 50%;
+  background: var(--zz-surface-alt);
+  border: 2px solid var(--zz-border);
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  color: var(--zz-text-light);
+  overflow: hidden;
+}
+
+.account-nav-user__avatar img {
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+  border-radius: 50%;
+}
+
+.account-nav-user__info {
+  display: flex;
+  flex-direction: column;
+  min-width: 0;
+}
+
+.account-nav-user__label {
+  font-size: 0.72rem;
+  color: var(--zz-text-light);
+  line-height: 1.2;
+}
+
+.account-nav-user__name {
+  font-size: 0.875rem;
+  font-weight: 700;
+  color: var(--zz-dark);
+  white-space: nowrap;
+  overflow: hidden;
+  text-overflow: ellipsis;
+}
+
+.woocommerce-MyAccount-navigation ul {
+  list-style: none;
+  margin: 0;
+  padding: 0;
+}
+
+.woocommerce-MyAccount-navigation li {
+  border-bottom: 1px solid var(--zz-border);
+  margin: 0;
+  padding: 0;
+}
+
+.woocommerce-MyAccount-navigation li:last-child {
+  border-bottom: none;
+}
+
+.woocommerce-MyAccount-navigation a {
+  display: flex;
+  align-items: center;
+  gap: 8px;
+  padding: 13px 20px;
+  font-size: 0.875rem;
+  font-weight: 500;
+  color: var(--zz-text);
+  text-decoration: none;
+  transition:
+    background var(--zz-transition),
+    color var(--zz-transition);
+}
+
+.woocommerce-MyAccount-navigation a:hover {
+  background: var(--zz-surface);
+  color: var(--zz-dark);
+  text-decoration: none;
+}
+
+.woocommerce-MyAccount-navigation li.is-active > a,
+.woocommerce-MyAccount-navigation
+  li.woocommerce-MyAccount-navigation-link--dashboard.is-active
+  > a {
+  background: var(--zz-dark);
+  color: #ffffff;
+  font-weight: 600;
+}
+
+/* ── Área de contenido del dashboard ────────────────────────────────────────── */
+.woocommerce-MyAccount-content {
+  flex: 1;
+  min-width: 0;
+  background: var(--zz-bg);
+  border: 1px solid var(--zz-border);
+  border-radius: var(--zz-radius-lg);
+  padding: 32px;
+  box-shadow: var(--zz-shadow-sm);
+}
+
+.woocommerce-MyAccount-content h2,
+.woocommerce-MyAccount-content h3 {
+  font-size: 1.1rem;
+  font-weight: 700;
+  color: var(--zz-dark);
+  margin-bottom: 16px;
+  padding-bottom: 12px;
+  border-bottom: 1px solid var(--zz-border);
+}
+
+/* ── Tabla de pedidos ────────────────────────────────────────────────────────── */
+.woocommerce-orders-table,
+.woocommerce-table--order-details,
+.shop_table {
+  width: 100%;
+  border-collapse: collapse;
+  font-size: 0.875rem;
+  margin-bottom: 24px;
+}
+
+.woocommerce-orders-table thead th,
+.woocommerce-table--order-details thead th,
+.shop_table thead th {
+  text-align: left;
+  padding: 10px 16px;
+  font-size: 0.75rem;
+  font-weight: 700;
+  text-transform: uppercase;
+  letter-spacing: 0.06em;
+  color: var(--zz-text-light);
+  border-bottom: 2px solid var(--zz-border);
+  white-space: nowrap;
+}
+
+.woocommerce-orders-table tbody tr,
+.woocommerce-table--order-details tbody tr,
+.shop_table tbody tr {
+  border-bottom: 1px solid var(--zz-border);
+  transition: background var(--zz-transition);
+}
+
+.woocommerce-orders-table tbody tr:hover,
+.shop_table tbody tr:hover {
+  background: var(--zz-surface);
+}
+
+.woocommerce-orders-table tbody td,
+.woocommerce-table--order-details tbody td,
+.shop_table tbody td,
+.woocommerce-orders-table tfoot td,
+.shop_table tfoot td {
+  padding: 14px 16px;
+  vertical-align: middle;
+  color: var(--zz-text);
+}
+
+/* Columna total / precio */
+.woocommerce-orders-table__cell-order-total,
+.shop_table .order-total td,
+.shop_table tfoot tr:last-child td {
+  font-weight: 700;
+  color: var(--zz-dark);
+}
+
+/* Botón "Ver" en la tabla de pedidos */
+.woocommerce-button.button.view {
+  padding: 6px 16px !important;
+  font-size: 0.8rem !important;
+}
+
+/* ── Estado del pedido (badge) ────────────────────────────────────────────── */
+.woocommerce-order-status,
+mark.order-status {
+  display: inline-block;
+  padding: 3px 10px;
+  border-radius: var(--zz-radius-pill);
+  font-size: 0.72rem;
+  font-weight: 700;
+  text-transform: uppercase;
+  letter-spacing: 0.05em;
+  background: var(--zz-surface);
+  color: var(--zz-text);
+}
+
+mark.order-status.status-completed {
+  background: rgba(34, 197, 94, 0.12);
+  color: #15803d;
+}
+mark.order-status.status-processing {
+  background: rgba(63, 130, 239, 0.12);
+  color: var(--zz-primary-dark);
+}
+mark.order-status.status-pending {
+  background: rgba(245, 158, 11, 0.12);
+  color: #b45309;
+}
+mark.order-status.status-on-hold {
+  background: rgba(245, 158, 11, 0.12);
+  color: #b45309;
+}
+mark.order-status.status-cancelled,
+mark.order-status.status-failed {
+  background: rgba(239, 68, 68, 0.12);
+  color: #b91c1c;
+}
+mark.order-status.status-refunded {
+  background: rgba(122, 133, 153, 0.12);
+  color: var(--zz-text-light);
+}
+
+/* ── Sección de direcciones ──────────────────────────────────────────────────── */
+.woocommerce-Addresses {
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+  gap: 24px;
+}
+
+.woocommerce-Address {
+  background: var(--zz-surface);
+  border: 1px solid var(--zz-border);
+  border-radius: var(--zz-radius-lg);
+  padding: 24px;
+}
+
+.woocommerce-Address-title {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  margin-bottom: 12px;
+}
+
+.woocommerce-Address-title h3 {
+  font-size: 0.95rem;
+  font-weight: 700;
+  color: var(--zz-dark);
+  margin: 0;
+  padding: 0;
+  border: none;
+}
+
+.woocommerce-Address-title .edit {
+  font-size: 0.8rem;
+  color: var(--zz-primary);
+  text-decoration: none;
+}
+
+.woocommerce-Address-title .edit:hover {
+  text-decoration: underline;
+}
+
+address {
+  font-style: normal;
+  font-size: 0.875rem;
+  color: var(--zz-text);
+  line-height: 1.7;
+}
+
+/* ── Página de recuperación de contraseña ─────────────────────────────────── */
+.woocommerce-account .woocommerce > form.woocommerce-ResetPassword {
+  flex: 0 0 100%;
+  max-width: 480px;
+  background: var(--zz-bg);
+  border: 1px solid var(--zz-border);
+  border-radius: var(--zz-radius-lg);
+  padding: 40px;
+  box-shadow: var(--zz-shadow-sm);
+}
+
+/* ── Responsive Mi cuenta ────────────────────────────────────────────────── */
+@media (max-width: 900px) {
+  .woocommerce-account .col2-set {
+    grid-template-columns: 1fr;
+  }
+
+  .woocommerce-MyAccount-navigation {
+    flex: 0 0 100%;
+    border-radius: var(--zz-radius-lg);
+    overflow-x: auto;
+  }
+
+  .woocommerce-MyAccount-navigation ul {
+    display: flex;
+    min-width: max-content;
+  }
+
+  .woocommerce-MyAccount-navigation li {
+    border-bottom: none;
+    border-right: 1px solid var(--zz-border);
+    flex-shrink: 0;
+  }
+
+  .woocommerce-MyAccount-navigation li:last-child {
+    border-right: none;
+  }
+
+  .account-nav-user {
+    padding: 14px 16px;
+  }
+
+  .woocommerce-MyAccount-navigation a {
+    border-bottom: 3px solid transparent;
+    padding: 11px 16px;
+    font-size: 0.82rem;
+    white-space: nowrap;
+  }
+
+  .woocommerce-MyAccount-navigation a:hover {
+    border-bottom-color: var(--zz-border);
+  }
+
+  .woocommerce-MyAccount-navigation li.is-active > a {
+    background: var(--zz-dark);
+    color: #ffffff;
+    border-bottom-color: transparent;
+  }
+
+  .woocommerce-MyAccount-content {
+    flex: 0 0 100%;
+    padding: 20px 16px;
+  }
+
+  .woocommerce-Addresses {
+    grid-template-columns: 1fr;
+  }
+}
+
+@media (max-width: 600px) {
+  .woocommerce-account .col2-set .u-column1,
+  .woocommerce-account .col2-set .u-column2 {
+    padding: 24px 20px;
+  }
+
+  .woocommerce-orders-table thead {
+    display: none;
+  }
+
+  .woocommerce-orders-table tbody tr {
+    display: block;
+    border: 1px solid var(--zz-border);
+    border-radius: var(--zz-radius);
+    margin-bottom: 12px;
+    padding: 12px;
+  }
+
+  .woocommerce-orders-table tbody td {
+    display: flex;
+    justify-content: space-between;
+    padding: 6px 0;
+    border: none;
+    font-size: 0.85rem;
+  }
+
+  .woocommerce-orders-table tbody td::before {
+    content: attr(data-title);
+    font-weight: 600;
+    color: var(--zz-dark);
+    font-size: 0.75rem;
+  }
+}
+
+/* ── Sobrescribir estilos inline del plugin de Garantías ────────────────────── */
+/* El plugin inyecta style="" directamente en el HTML — se necesita !important   */
+.warranty-filters a[href="/mi-cuenta/warranties/"],
+.claim-filters a[href="/mi-cuenta/claims/"] {
+  background: #6b7280 !important;
+  color: #ffffff !important;
+  border: none !important;
+  padding: 8px 16px !important;
+  border-radius: 6px !important;
+  text-decoration: none !important;
+  font-size: 14px !important;
+  font-weight: 500 !important;
+  display: inline-flex !important;
+  align-items: center !important;
+  justify-content: center !important;
+  white-space: nowrap !important;
+  overflow: hidden !important;
+  text-align: center !important;
+  height: 60px !important;
+  box-sizing: border-box !important;
+}

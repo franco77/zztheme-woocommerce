@@ -1,0 +1,27 @@
+# Dependencias del sistema
+node_modules/
+vendor/
+
+# Archivos del SO
+.DS_Store
+Thumbs.db
+desktop.ini
+
+# IDEs
+.vscode/
+.idea/
+*.sublime-project
+*.sublime-workspace
+
+# Logs y temporales
+*.log
+*.tmp
+*.cache
+
+# Variables de entorno
+.env
+.env.local
+
+# WordPress específicos (no subir uploads ni config local)
+wp-config.php
+wp-config-local.php
