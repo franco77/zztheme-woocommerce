@@ -467,6 +467,11 @@
   flex-shrink: 0;
 }
 
+.header-right-info button {
+  padding: 0;
+  margin-top: 14px;
+}
+
 .header-phone {
   color: rgba(255, 255, 255, 0.85);
   font-size: 0.8rem;
@@ -975,6 +980,7 @@
 
   /* Menú mobile */
   #site-navigation {
+    display: block; /* resetea display:flex de .main-navigation — sin esto los ítems se comprimen */
     position: fixed;
     top: 0;
     left: 0;
@@ -994,8 +1000,10 @@
   }
 
   #site-navigation ul {
+    display: flex;
     flex-direction: column;
     align-items: stretch;
+    width: 100%;
     gap: 0;
   }
 
@@ -1099,5 +1107,30 @@
   }
   h2 {
     font-size: 1.5rem;
+  }
+
+  /* Reducir padding lateral del container en teléfonos pequeños */
+  .container {
+    padding-left: 16px;
+    padding-right: 16px;
+  }
+
+  /* Section headers más compactos */
+  .section-header {
+    flex-direction: column;
+    align-items: flex-start;
+    gap: 8px;
+    margin-bottom: 24px;
+  }
+
+  .section-header h2 {
+    font-size: 1.4rem;
+  }
+
+  /* Footer widgets en columna única */
+  .site-footer__widgets {
+    grid-template-columns: 1fr;
+    gap: 16px;
+    padding-bottom: 28px;
   }
 }

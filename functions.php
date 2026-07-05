@@ -13,6 +13,7 @@ define('ZZTHEME_DIR', get_template_directory());
 define('ZZTHEME_URI', get_template_directory_uri());
 
 require_once ZZTHEME_DIR . '/inc/setup.php';
+require_once ZZTHEME_DIR . '/inc/slides-cpt.php';
 require_once ZZTHEME_DIR . '/inc/template-tags.php';
 require_once ZZTHEME_DIR . '/inc/menu-walker.php';
 require_once ZZTHEME_DIR . '/inc/enqueue.php';

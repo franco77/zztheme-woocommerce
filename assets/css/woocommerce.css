@@ -1266,9 +1266,70 @@ section.related.products {
     font-size: 1.6rem;
   }
 
+  /* Tabla del carrito: scroll horizontal en lugar de overflow */
+  .woocommerce table.cart {
+    display: block;
+    overflow-x: auto;
+    -webkit-overflow-scrolling: touch;
+    white-space: nowrap;
+  }
+
+  .woocommerce table.cart th,
+  .woocommerce table.cart td {
+    white-space: normal;
+    min-width: 100px;
+  }
+
+  .woocommerce table.cart td.product-thumbnail {
+    min-width: 60px;
+  }
+
+  /* Direcciones: columna única */
+  .woocommerce-Addresses {
+    grid-template-columns: 1fr;
+  }
+}
+
+@media (max-width: 480px) {
+  /* Add-to-cart: envolver en dos líneas en pantallas muy pequeñas */
   .sp__add-to-cart form.cart,
   .sp__add-to-cart .woocommerce-variation-add-to-cart {
+    flex-wrap: wrap;
+  }
+
+  .sp__add-to-cart .single_add_to_cart_button {
+    flex: 1 1 100%;
+    min-width: 100%;
+  }
+
+  /* Tabs WC: scroll horizontal en pantallas muy pequeñas */
+  .sp__tabs .woocommerce-tabs ul.tabs,
+  .woocommerce div.product .woocommerce-tabs ul.tabs {
+    overflow-x: auto;
     flex-wrap: nowrap;
+    -webkit-overflow-scrolling: touch;
+  }
+
+  .sp__tabs .woocommerce-tabs ul.tabs li a,
+  .woocommerce div.product .woocommerce-tabs ul.tabs li a {
+    padding: 10px 12px;
+    font-size: 0.8rem;
+    white-space: nowrap;
+  }
+
+  /* Producto individual: precio más compacto */
+  .sp__price .price {
+    font-size: 1.4rem;
+  }
+
+  .sp__meta {
+    gap: 8px;
+  }
+
+  /* Related products: 2 columnas en 480px */
+  .woocommerce .related.products ul.products,
+  .woocommerce-page .related.products ul.products {
+    grid-template-columns: repeat(2, 1fr);
   }
 }
 

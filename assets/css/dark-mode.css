@@ -112,6 +112,19 @@ html.dark-mode table.cart th {
     background: var(--zz-surface);
 }
 
+/* ── Elementos con fondo oscuro fijo (topbar, nav, footer, features)
+   --zz-dark cambia a blanco en dark mode → hay que fijar un fondo oscuro explícito ── */
+
+/* Valor fijo: oscuro-navy adaptado a dark mode (no usa --zz-dark) */
+html.dark-mode .site-topbar,
+html.dark-mode .site-header__nav,
+html.dark-mode .features-bar,
+html.dark-mode .site-footer,
+html.dark-mode .page-hero,
+html.dark-mode .home-hero {
+    background-color: #0d1825;
+}
+
 /* Mismo bloque para prefers-color-scheme */
 @media (prefers-color-scheme: dark) {
     html:not(.light-mode) .site-header {
@@ -172,5 +185,15 @@ html.dark-mode table.cart th {
 
     html:not(.light-mode) .value-card {
         background: var(--zz-surface-alt);
+    }
+
+    /* Elementos con fondo oscuro fijo */
+    html:not(.light-mode) .site-topbar,
+    html:not(.light-mode) .site-header__nav,
+    html:not(.light-mode) .features-bar,
+    html:not(.light-mode) .site-footer,
+    html:not(.light-mode) .page-hero,
+    html:not(.light-mode) .home-hero {
+        background-color: #0d1825;
     }
 }
