@@ -44,7 +44,11 @@ html.dark-mode .site-header__main {
 
 html.dark-mode .product-card {
     background: var(--zz-surface);
-    border-color: var(--zz-border);
+    box-shadow: 0 2px 8px rgba(0, 0, 0, 0.3);
+}
+
+html.dark-mode .home-section--sale {
+    background: linear-gradient(180deg, #1a1a0d 0%, #1a2535 100%);
 }
 
 html.dark-mode .contact-form {
@@ -117,12 +121,32 @@ html.dark-mode table.cart th {
 
 /* Valor fijo: oscuro-navy adaptado a dark mode (no usa --zz-dark) */
 html.dark-mode .site-topbar,
-html.dark-mode .site-header__nav,
-html.dark-mode .features-bar,
 html.dark-mode .site-footer,
 html.dark-mode .page-hero,
 html.dark-mode .home-hero {
     background-color: #0d1825;
+}
+
+/* Nav: dark mode siempre fuerza esquema oscuro, incluso si admin eligió variante clara.
+   Se resetean los tokens --nav-* para garantizar contraste correcto. */
+html.dark-mode .site-header__nav {
+    background-color: #0d1825;
+    --nav-bg:              #0d1825;
+    --nav-border-bottom:   transparent;
+    --nav-link:            rgba(255, 255, 255, 0.88);
+    --nav-link-hover:      #ffffff;
+    --nav-link-hover-bg:   rgba(255, 255, 255, 0.10);
+    --nav-active-line:     transparent;
+    --nav-muted:           rgba(255, 255, 255, 0.70);
+    --nav-icon:            #ffffff;
+    --nav-dm-border:       rgba(255, 255, 255, 0.25);
+    --nav-dm-color:        rgba(255, 255, 255, 0.80);
+    --nav-dm-hover-bg:     rgba(255, 255, 255, 0.10);
+    --nav-dm-hover-color:  #ffffff;
+}
+
+html.dark-mode .features-bar {
+    background: linear-gradient(135deg, #060e1a 0%, #0d1825 60%, #101f35 100%);
 }
 
 /* Mismo bloque para prefers-color-scheme */
@@ -189,11 +213,26 @@ html.dark-mode .home-hero {
 
     /* Elementos con fondo oscuro fijo */
     html:not(.light-mode) .site-topbar,
-    html:not(.light-mode) .site-header__nav,
     html:not(.light-mode) .features-bar,
     html:not(.light-mode) .site-footer,
     html:not(.light-mode) .page-hero,
     html:not(.light-mode) .home-hero {
         background-color: #0d1825;
+    }
+
+    html:not(.light-mode) .site-header__nav {
+        background-color: #0d1825;
+        --nav-bg:              #0d1825;
+        --nav-border-bottom:   transparent;
+        --nav-link:            rgba(255, 255, 255, 0.88);
+        --nav-link-hover:      #ffffff;
+        --nav-link-hover-bg:   rgba(255, 255, 255, 0.10);
+        --nav-active-line:     transparent;
+        --nav-muted:           rgba(255, 255, 255, 0.70);
+        --nav-icon:            #ffffff;
+        --nav-dm-border:       rgba(255, 255, 255, 0.25);
+        --nav-dm-color:        rgba(255, 255, 255, 0.80);
+        --nav-dm-hover-bg:     rgba(255, 255, 255, 0.10);
+        --nav-dm-hover-color:  #ffffff;
     }
 }

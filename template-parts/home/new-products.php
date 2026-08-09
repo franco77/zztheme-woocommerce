@@ -44,7 +44,10 @@ if (!$loop->have_posts()) {
 <section class="home-section home-section--carousel">
     <div class="container">
         <div class="section-header">
-            <h2><?php echo esc_html($title); ?></h2>
+            <div>
+                <span class="section-eyebrow"><?php esc_html_e('Novedades', 'zztheme'); ?></span>
+                <h2><?php echo esc_html($title); ?></h2>
+            </div>
             <div class="carousel-nav" aria-label="<?php esc_attr_e('Navegación del carrusel', 'zztheme'); ?>">
                 <button class="carousel-btn carousel-btn--prev" aria-label="<?php esc_attr_e('Anterior', 'zztheme'); ?>">
                     <svg viewBox="0 0 24 24" width="20" height="20" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round">

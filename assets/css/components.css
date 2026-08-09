@@ -5,12 +5,13 @@
 /* ── Tarjeta de producto ────────────────────────────────────────────────────── */
 .product-card {
   background: var(--zz-bg);
-  border: 1px solid var(--zz-border);
+  border: none;
   border-radius: var(--zz-radius-lg);
   overflow: hidden;
+  box-shadow: var(--zz-shadow-sm);
   transition:
-    box-shadow var(--zz-transition),
-    transform var(--zz-transition);
+    box-shadow var(--zz-transition-lg),
+    transform var(--zz-transition-lg);
   display: flex;
   flex-direction: column;
   list-style: none;
@@ -18,7 +19,7 @@
 
 .product-card:hover {
   box-shadow: var(--zz-shadow-hover);
-  transform: translateY(-2px);
+  transform: translateY(-5px);
 }
 
 .product-card__thumb {
@@ -51,17 +52,16 @@
 }
 
 .product-card__title-link {
-  display: block;
+  display: -webkit-box;
+  -webkit-line-clamp: 3;
+  -webkit-box-orient: vertical;
+  overflow: hidden;
   font-size: 0.875rem;
   font-weight: 600;
   color: var(--zz-dark);
   margin-bottom: 6px;
   text-decoration: none;
-  line-height: 1.35;
-  display: -webkit-box;
-  -webkit-line-clamp: 3;
-  -webkit-box-orient: vertical;
-  overflow: hidden;
+  line-height: 1.45;
 }
 
 .product-card__title-link:hover {
@@ -113,11 +113,11 @@ span.onsale,
   top: 10px !important;
   left: 10px !important;
   right: auto !important;
-  background: #e63030 !important;
+  background: linear-gradient(135deg, #f59e0b, #d97706) !important;
   color: #fff !important;
-  font-size: 0.6rem !important;
+  font-size: 0.7rem !important;
   font-weight: 700 !important;
-  padding: 3px 8px !important;
+  padding: 3px 9px !important;
   border-radius: var(--zz-radius-pill) !important;
   text-transform: uppercase !important;
   letter-spacing: 0.06em !important;
@@ -150,46 +150,64 @@ span.onsale,
 
 /* ── Features bar ───────────────────────────────────────────────────────────── */
 .features-bar {
-  background: var(--zz-dark);
-  padding: 40px 0;
+  background: linear-gradient(135deg, #0c1b33 0%, #1a2c4a 60%, #1e3560 100%);
+  padding: 56px 0;
 }
 
 .features-bar__grid {
   display: grid;
   grid-template-columns: repeat(3, 1fr);
-  gap: 32px;
+  gap: 40px;
 }
 
 .feature-item {
   display: flex;
   align-items: flex-start;
-  gap: 16px;
+  gap: 18px;
   color: rgba(255, 255, 255, 0.9);
+  transition: transform var(--zz-transition-lg);
+}
+
+.feature-item:hover {
+  transform: translateY(-3px);
 }
 
 .feature-item__icon {
   flex-shrink: 0;
-  width: 48px;
-  height: 48px;
-  background: rgba(255, 255, 255, 0.12);
+  width: 52px;
+  height: 52px;
+  background: rgba(29, 110, 250, 0.18);
+  border: 1px solid rgba(29, 110, 250, 0.28);
   border-radius: var(--zz-radius-lg);
   display: flex;
   align-items: center;
   justify-content: center;
-  color: var(--zz-primary);
+  color: #6eaafb;
+  transition:
+    background var(--zz-transition),
+    border-color var(--zz-transition),
+    color var(--zz-transition);
+}
+
+.feature-item:hover .feature-item__icon {
+  background: var(--zz-primary);
+  border-color: var(--zz-primary);
+  color: #fff;
 }
 
 .feature-item__title {
   font-size: 1rem;
   font-weight: 700;
   color: #fff;
-  margin-bottom: 4px;
+  margin-bottom: 6px;
+  letter-spacing: -0.01em;
 }
 
 .feature-item__desc {
   font-size: 0.85rem;
-  color: rgba(255, 255, 255, 0.65);
+  color: rgba(255, 255, 255, 0.6);
   margin: 0;
+  line-height: 1.5;
 }
 
 /* ── Widget styles ──────────────────────────────────────────────────────────── */
@@ -288,7 +306,7 @@ span.onsale,
   line-height: 1;
   letter-spacing: normal;
   text-transform: none;
-  margin-top: 20px;
+  margin-top: 15px;
 }
 
 .header-categories-btn:hover,

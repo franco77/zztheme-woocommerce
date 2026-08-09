@@ -29,14 +29,17 @@ if (!$loop->have_posts()) {
     return;
 }
 ?>
-<section class="home-section" style="background-color: var(--zz-surface);">
+<section class="home-section home-section--sale">
     <div class="container">
         <div class="section-header section-header--center">
-            <h2><?php echo esc_html($title); ?></h2>
+            <div>
+                <span class="section-eyebrow section-eyebrow--accent"><?php esc_html_e('Descuentos del día', 'zztheme'); ?></span>
+                <h2><?php echo esc_html($title); ?></h2>
+            </div>
         </div>
 
         <?php
-        wc_set_loop_prop('columns', 3);
+        wc_set_loop_prop('columns', 4);
         echo '<div class="woocommerce">';
         woocommerce_product_loop_start();
         while ($loop->have_posts()) :

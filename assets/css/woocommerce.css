@@ -22,6 +22,13 @@
   display: none !important;
 }
 
+/* 4 columnas — sección Ofertas Especiales */
+.woocommerce ul.products.columns-4,
+.woocommerce-page ul.products.columns-4 {
+  grid-template-columns: repeat(4, 1fr);
+  gap: 16px;
+}
+
 /* Anular el float + width% que WooCommerce inyecta vía .columns-N */
 .woocommerce ul.products li.product,
 .woocommerce-page ul.products li.product,
@@ -1222,6 +1229,11 @@ section.related.products {
     grid-template-columns: repeat(2, 1fr);
   }
 
+  .woocommerce ul.products.columns-4,
+  .woocommerce-page ul.products.columns-4 {
+    grid-template-columns: repeat(3, 1fr);
+  }
+
   .woocommerce .related.products ul.products,
   .woocommerce-page .related.products ul.products {
     grid-template-columns: repeat(2, 1fr);
@@ -1231,6 +1243,11 @@ section.related.products {
 @media (max-width: 768px) {
   .woocommerce ul.products,
   .woocommerce-page ul.products {
+    grid-template-columns: repeat(2, 1fr);
+  }
+
+  .woocommerce ul.products.columns-4,
+  .woocommerce-page ul.products.columns-4 {
     grid-template-columns: repeat(2, 1fr);
   }
 

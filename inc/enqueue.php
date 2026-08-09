@@ -124,3 +124,14 @@ add_action('wp_enqueue_scripts', function () {
     wp_dequeue_style('wp-block-library-theme');
     wp_dequeue_style('classic-theme-styles');
 }, 100);
+
+/* Customizer live preview — solo dentro del iframe del Customizer. */
+add_action('customize_preview_init', function () {
+    wp_enqueue_script(
+        'zztheme-customizer',
+        ZZTHEME_URI . '/assets/js/customizer.js',
+        ['customize-preview'],
+        filemtime(ZZTHEME_DIR . '/assets/js/customizer.js'),
+        true
+    );
+});

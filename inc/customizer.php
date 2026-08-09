@@ -496,20 +496,43 @@ add_action('customize_register', function (WP_Customize_Manager $wp_customize) {
         'section' => 'zz_colors_section',
     ]));
 
-    /* ── Header badges ──────────────────────────────────────────────── */
+    /* ── Header — estilo visual y badges ───────────────────────────── */
     $wp_customize->add_section('zz_header_section', [
-        'title'    => __('Cabecera — badges', 'zztheme'),
-        'priority' => 38,
+        'title'       => __('Cabecera — Estilo y badges', 'zztheme'),
+        'description' => __('Personaliza el aspecto visual de la barra de navegación principal.', 'zztheme'),
+        'priority'    => 38,
     ]);
 
+    /* Esquema de color del nav */
+    $wp_customize->add_setting('zz_nav_style', [
+        'default'           => 'dark',
+        'sanitize_callback' => function (string $value): string {
+            return in_array($value, ['dark', 'light'], true) ? $value : 'dark';
+        },
+        'transport' => 'postMessage',
+    ]);
+    $wp_customize->add_control('zz_nav_style', [
+        'label'       => __('Esquema de color — barra de navegación', 'zztheme'),
+        'description' => __('Oscuro: fondo navy con textos blancos. Claro: fondo blanco con textos y botones en el color primario del sitio.', 'zztheme'),
+        'section'     => 'zz_header_section',
+        'type'        => 'radio',
+        'priority'    => 5,
+        'choices'     => [
+            'dark'  => __('Oscuro (navy)', 'zztheme'),
+            'light' => __('Claro (blanco)', 'zztheme'),
+        ],
+    ]);
+
+    /* Badges */
     for ($i = 1; $i <= 2; $i++) {
         $wp_customize->add_setting("zz_header_badge{$i}", [
             'default'           => '',
             'sanitize_callback' => 'sanitize_text_field',
         ]);
         $wp_customize->add_control("zz_header_badge{$i}", [
-            'label'   => sprintf(__('Badge %d (texto corto)', 'zztheme'), $i),
-            'section' => 'zz_header_section',
+            'label'    => sprintf(__('Badge %d (texto corto)', 'zztheme'), $i),
+            'section'  => 'zz_header_section',
+            'priority' => 10 + $i,
         ]);
     }
 });

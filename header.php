@@ -160,7 +160,12 @@
     </div>
 
     <!-- Fila nav -->
-    <div class="site-header__nav">
+    <?php
+    $zz_nav_style = get_theme_mod('zz_nav_style', 'dark');
+    $zz_nav_class = 'site-header__nav' . ('light' === $zz_nav_style ? ' site-header__nav--light' : '');
+    ?>
+    <div class="<?php echo esc_attr($zz_nav_class); ?>"
+         data-nav-style="<?php echo esc_attr($zz_nav_style); ?>">
         <div class="container site-header__nav-row">
 
             <!-- Hamburger -->
