@@ -218,10 +218,29 @@ function zztheme_contact_form_html(): string {
     return ob_get_clean();
 }
 
+/**
+ * Rate limiter basado en transients. Retorna false si el IP superó el límite.
+ */
+function zztheme_rate_limit(string $action, int $max, int $window_seconds): bool {
+    $ip  = sanitize_text_field(wp_unslash($_SERVER['REMOTE_ADDR'] ?? 'cli'));
+    $key = 'zzrl_' . substr(md5($action . $ip), 0, 24);
+    $hit = (int) get_transient($key);
+    if ($hit >= $max) {
+        return false;
+    }
+    set_transient($key, $hit + 1, $window_seconds);
+    return true;
+}
+
 /* Handler AJAX del formulario de contacto. */
 function zztheme_handle_contact_form(): void {
     if (!isset($_POST['zztheme_nonce']) || !wp_verify_nonce(sanitize_text_field(wp_unslash($_POST['zztheme_nonce'])), 'zztheme_contact')) {
         wp_send_json_error(['message' => __('Token de seguridad inválido.', 'zztheme')]);
+    }
+
+    // Fix 1: Rate limiting — máx. 5 envíos por IP cada 5 minutos.
+    if (!zztheme_rate_limit('contact', 5, 300)) {
+        wp_send_json_error(['message' => __('Demasiados intentos. Espera unos minutos antes de volver a enviar.', 'zztheme')]);
     }
 
     $name    = sanitize_text_field(wp_unslash($_POST['cf_name'] ?? ''));
@@ -239,9 +258,10 @@ function zztheme_handle_contact_form(): void {
         "Nombre: %s\nEmail: %s\nTeléfono: %s\n\nMensaje:\n%s",
         $name, $email, $phone ?: '—', $message
     );
+    // Fix 5: Reply-To usa solo el email para evitar inyección de cabeceras.
     $headers = [
         'Content-Type: text/plain; charset=UTF-8',
-        'Reply-To: ' . $name . ' <' . $email . '>',
+        'Reply-To: ' . $email,
     ];
 
     if (wp_mail($to, $subject, $body, $headers)) {

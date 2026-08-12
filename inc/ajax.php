@@ -16,6 +16,11 @@ add_action('wp_ajax_nopriv_zz_get_wishlist', 'zztheme_get_wishlist_handler');
 function zztheme_live_search_handler(): void {
     check_ajax_referer('zz_live_search', 'nonce');
 
+    // Fix 4: Rate limiting — máx. 60 búsquedas por IP por minuto.
+    if (!zztheme_rate_limit('search', 60, 60)) {
+        wp_send_json_success(['results' => []]);
+    }
+
     $q = sanitize_text_field(wp_unslash($_GET['q'] ?? ''));
 
     if (mb_strlen($q) < 2) {
@@ -75,7 +80,7 @@ function zztheme_get_wishlist_handler(): void {
         'post_status'    => 'publish',
         'post__in'       => $ids,
         'orderby'        => 'post__in',
-        'posts_per_page' => count($ids),
+        'posts_per_page' => min(count($ids), 50),
         'no_found_rows'  => true,
     ]);
 

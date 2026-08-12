@@ -105,12 +105,15 @@ add_action('save_post_zz_slide', function (int $post_id): void {
     $fields = [
         '_zz_slide_subtitle' => 'zz_slide_subtitle',
         '_zz_slide_btn_text' => 'zz_slide_btn_text',
-        '_zz_slide_btn_url'  => 'zz_slide_btn_url',
     ];
     foreach ($fields as $meta_key => $field_name) {
         if (isset($_POST[$field_name])) {
             update_post_meta($post_id, $meta_key, sanitize_text_field(wp_unslash($_POST[$field_name])));
         }
+    }
+    // Fix 3: La URL del botón requiere esc_url_raw, no sanitize_text_field.
+    if (isset($_POST['zz_slide_btn_url'])) {
+        update_post_meta($post_id, '_zz_slide_btn_url', esc_url_raw(wp_unslash($_POST['zz_slide_btn_url'])));
     }
 });
 
