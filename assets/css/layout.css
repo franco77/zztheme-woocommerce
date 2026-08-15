@@ -1142,7 +1142,13 @@
   }
 
   .header-right-info {
-    display: none;
+    display: flex;
+    margin-left: auto; /* empuja el toggle al extremo derecho */
+  }
+
+  .header-right-info .header-phone,
+  .header-right-info .header-badges {
+    display: none; /* en móvil solo se muestra el toggle de modo oscuro */
   }
 
   /* Shop layout */
