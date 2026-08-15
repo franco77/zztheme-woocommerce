@@ -1961,17 +1961,9 @@ span.onsale,
 }
 
 .header-account__btn {
-  /* hereda .header-action — solo añade el chevron */
-}
-
-.header-account__chevron {
-  transition: transform var(--zz-transition);
-  flex-shrink: 0;
-  margin-top: 1px;
-}
-
-.header-account__btn[aria-expanded="true"] .header-account__chevron {
-  transform: rotate(180deg);
+  /* Resetea los estilos que base.css aplica a todos los <button> */
+  line-height: var(--zz-line-height);
+  letter-spacing: normal;
 }
 
 /* ── Dropdown panel ──────────────────────────────────────────────────────────── */

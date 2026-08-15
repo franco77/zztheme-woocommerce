@@ -127,16 +127,12 @@
                     <div class="header-account">
                         <button class="header-action header-account__btn"
                                 aria-expanded="false"
-                                aria-haspopup="true"
                                 aria-label="<?php esc_attr_e('Mi cuenta', 'zztheme'); ?>">
                             <svg viewBox="0 0 24 24" width="22" height="22" fill="none" stroke="currentColor" stroke-width="1.5">
                                 <path d="M20 21v-2a4 4 0 0 0-4-4H8a4 4 0 0 0-4 4v2"/>
                                 <circle cx="12" cy="7" r="4"/>
                             </svg>
                             <span class="header-action__label"><?php echo esc_html($zz_user->display_name ?: $zz_user->user_login); ?></span>
-                            <svg class="header-account__chevron" viewBox="0 0 24 24" width="11" height="11" fill="none" stroke="currentColor" stroke-width="2.5" aria-hidden="true">
-                                <polyline points="6 9 12 15 18 9"/>
-                            </svg>
                         </button>
                         <div class="header-account__dropdown" aria-hidden="true">
                             <div class="header-account__user">
