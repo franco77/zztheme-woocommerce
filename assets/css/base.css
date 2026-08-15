@@ -84,11 +84,16 @@ body {
 }
 
 /* ── Prevenir scroll horizontal ─────────────────────────────────────────────── */
-/* overflow-x:clip corta el overflow sin crear scroll container, preservando     */
-/* position:sticky del header. Fallback hidden para Safari < 15.4               */
+/* iOS Safari requiere overflow-x en AMBOS html y body para prevenir el scroll  */
+/* horizontal táctil. overflow-x:clip no crea scroll container (no rompe sticky)*/
 html {
-    overflow-x: hidden; /* fallback */
-    overflow-x: clip;   /* preferido — no rompe sticky */
+    overflow-x: hidden; /* fallback Safari < 15.4 */
+    overflow-x: clip;
+}
+
+body {
+    overflow-x: clip; /* iOS Safari ignora html solo — necesita body también */
+    max-width: 100%;  /* refuerza que body no exceda el viewport */
 }
 
 /* ── Anular tipografía de Milligram ─────────────────────────────────────────── */
