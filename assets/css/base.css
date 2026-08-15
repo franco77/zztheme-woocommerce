@@ -83,6 +83,14 @@ body {
     letter-spacing: -0.005em;
 }
 
+/* ── Prevenir scroll horizontal ─────────────────────────────────────────────── */
+/* overflow-x:clip corta el overflow sin crear scroll container, preservando     */
+/* position:sticky del header. Fallback hidden para Safari < 15.4               */
+html {
+    overflow-x: hidden; /* fallback */
+    overflow-x: clip;   /* preferido — no rompe sticky */
+}
+
 /* ── Anular tipografía de Milligram ─────────────────────────────────────────── */
 /* Milligram establece Raleway y tamaños muy grandes — los sobreescribimos */
 body,

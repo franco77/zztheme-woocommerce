@@ -1487,11 +1487,8 @@ section.related.products {
 
 /* ── Contenedor raíz: flex centrado para login y dashboard ─────────────────── */
 .woocommerce-account .woocommerce {
-  display: flex;
-  flex-wrap: wrap;
-  align-items: flex-start;
-  justify-content: center;
-  gap: 0;
+  /* display:block — el login/registro centran vía margin:auto en modo bloque */
+  display: block;
 }
 
 /* El bloque de avisos siempre ocupa todo el ancho */
@@ -1662,6 +1659,9 @@ section.related.products {
 }
 
 .woocommerce-account .woocommerce:has(.woocommerce-MyAccount-navigation) {
+  display: flex;
+  flex-wrap: wrap;
+  align-items: flex-start;
   gap: 28px;
 }
 
@@ -1942,8 +1942,10 @@ address {
 
 /* ── Página de recuperación de contraseña ─────────────────────────────────── */
 .woocommerce-account .woocommerce > form.woocommerce-ResetPassword {
-  flex: 0 0 100%;
   max-width: 480px;
+  width: 100%;
+  margin-left: auto;
+  margin-right: auto;
   background: var(--zz-bg);
   border: 1px solid var(--zz-border);
   border-radius: var(--zz-radius-lg);
@@ -2041,6 +2043,24 @@ address {
     color: var(--zz-dark);
     font-size: 0.75rem;
   }
+}
+
+/* ── Botón full-width en formularios de cuenta (lost-password, reset) ──────── */
+/* La regla base usa inline-flex; estos formularios necesitan ancho completo.   */
+/* Especificidad (0,3,0) supera a la base (0,2,1) sin !important               */
+.woocommerce .woocommerce-ResetPassword .button,
+.woocommerce .lost_reset_password .button {
+  width: 100%;
+}
+
+/* ── Sobrescribir form-row-first / form-row-last de WooCommerce ─────────────── */
+/* WC nativo: (0,2,1). Encadenamos .form-row para subir a (0,3,1) y ganar sin !important */
+.woocommerce form .form-row.form-row-first,
+.woocommerce form .form-row.form-row-last,
+.woocommerce-page form .form-row.form-row-first,
+.woocommerce-page form .form-row.form-row-last {
+  width: 100%;
+  overflow: visible;
 }
 
 /* ── Sobrescribir estilos inline del plugin de Garantías ────────────────────── */

@@ -1629,13 +1629,22 @@ span.onsale,
   max-width: 320px;
   min-width: 200px;
   line-height: 1.4;
-  transform: translateX(calc(100% + 28px));
-  transition: transform 0.35s cubic-bezier(0.34, 1.56, 0.64, 1);
+  /* Ocultar sin salir del viewport — translateX fuera causaba scroll horizontal en mobile */
+  opacity: 0;
+  visibility: hidden;
+  transform: translateY(-10px);
+  transition:
+    opacity 0.28s ease,
+    visibility 0.28s ease,
+    transform 0.28s cubic-bezier(0.34, 1.56, 0.64, 1);
   pointer-events: none;
 }
 
 .site-toast.is-visible {
-  transform: translateX(0);
+  opacity: 1;
+  visibility: visible;
+  transform: translateY(0);
+  pointer-events: auto;
 }
 
 .site-toast--success {
