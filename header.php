@@ -119,16 +119,76 @@
             <!-- Acciones: cuenta, carrito -->
             <div class="site-header__actions">
                 <?php if (class_exists('WooCommerce')) : ?>
+
+                    <?php if (is_user_logged_in()) :
+                        $zz_user = wp_get_current_user();
+                    ?>
+                    <!-- Cuenta con dropdown (usuario logueado) -->
+                    <div class="header-account">
+                        <button class="header-action header-account__btn"
+                                aria-expanded="false"
+                                aria-haspopup="true"
+                                aria-label="<?php esc_attr_e('Mi cuenta', 'zztheme'); ?>">
+                            <svg viewBox="0 0 24 24" width="22" height="22" fill="none" stroke="currentColor" stroke-width="1.5">
+                                <path d="M20 21v-2a4 4 0 0 0-4-4H8a4 4 0 0 0-4 4v2"/>
+                                <circle cx="12" cy="7" r="4"/>
+                            </svg>
+                            <span class="header-action__label"><?php echo esc_html($zz_user->display_name ?: $zz_user->user_login); ?></span>
+                            <svg class="header-account__chevron" viewBox="0 0 24 24" width="11" height="11" fill="none" stroke="currentColor" stroke-width="2.5" aria-hidden="true">
+                                <polyline points="6 9 12 15 18 9"/>
+                            </svg>
+                        </button>
+                        <div class="header-account__dropdown" aria-hidden="true">
+                            <div class="header-account__user">
+                                <span class="header-account__name"><?php echo esc_html($zz_user->display_name ?: $zz_user->user_login); ?></span>
+                                <span class="header-account__email"><?php echo esc_html($zz_user->user_email); ?></span>
+                            </div>
+                            <ul class="header-account__menu">
+                                <li>
+                                    <a href="<?php echo esc_url(wc_get_account_endpoint_url('dashboard')); ?>">
+                                        <svg viewBox="0 0 24 24" width="15" height="15" fill="none" stroke="currentColor" stroke-width="2" aria-hidden="true"><rect x="3" y="3" width="7" height="7"/><rect x="14" y="3" width="7" height="7"/><rect x="14" y="14" width="7" height="7"/><rect x="3" y="14" width="7" height="7"/></svg>
+                                        <?php esc_html_e('Escritorio', 'zztheme'); ?>
+                                    </a>
+                                </li>
+                                <li>
+                                    <a href="<?php echo esc_url(wc_get_account_endpoint_url('orders')); ?>">
+                                        <svg viewBox="0 0 24 24" width="15" height="15" fill="none" stroke="currentColor" stroke-width="2" aria-hidden="true"><path d="M9 5H7a2 2 0 0 0-2 2v12a2 2 0 0 0 2 2h10a2 2 0 0 0 2-2V7a2 2 0 0 0-2-2h-2"/><rect x="9" y="3" width="6" height="4" rx="2"/><line x1="9" y1="12" x2="15" y2="12"/><line x1="9" y1="16" x2="13" y2="16"/></svg>
+                                        <?php esc_html_e('Mis órdenes', 'zztheme'); ?>
+                                    </a>
+                                </li>
+                                <li>
+                                    <a href="<?php echo esc_url(wc_get_account_endpoint_url('edit-address')); ?>">
+                                        <svg viewBox="0 0 24 24" width="15" height="15" fill="none" stroke="currentColor" stroke-width="2" aria-hidden="true"><path d="M21 10c0 7-9 13-9 13s-9-6-9-13a9 9 0 0 1 18 0z"/><circle cx="12" cy="10" r="3"/></svg>
+                                        <?php esc_html_e('Modificar dirección', 'zztheme'); ?>
+                                    </a>
+                                </li>
+                                <li>
+                                    <a href="<?php echo esc_url(wc_get_account_endpoint_url('edit-account')); ?>">
+                                        <svg viewBox="0 0 24 24" width="15" height="15" fill="none" stroke="currentColor" stroke-width="2" aria-hidden="true"><path d="M20 21v-2a4 4 0 0 0-4-4H8a4 4 0 0 0-4 4v2"/><circle cx="12" cy="7" r="4"/></svg>
+                                        <?php esc_html_e('Detalles de la cuenta', 'zztheme'); ?>
+                                    </a>
+                                </li>
+                            </ul>
+                            <div class="header-account__footer">
+                                <a href="<?php echo esc_url(wc_get_account_endpoint_url('customer-logout')); ?>"
+                                   class="header-account__logout">
+                                    <svg viewBox="0 0 24 24" width="15" height="15" fill="none" stroke="currentColor" stroke-width="2" aria-hidden="true"><path d="M9 21H5a2 2 0 0 1-2-2V5a2 2 0 0 1 2-2h4"/><polyline points="16 17 21 12 16 7"/><line x1="21" y1="12" x2="9" y2="12"/></svg>
+                                    <?php esc_html_e('Cerrar sesión', 'zztheme'); ?>
+                                </a>
+                            </div>
+                        </div>
+                    </div>
+                    <?php else : ?>
+                    <!-- Cuenta sin dropdown (usuario no logueado) -->
                     <a class="header-action" href="<?php echo esc_url(wc_get_page_permalink('myaccount')); ?>"
                        aria-label="<?php esc_attr_e('Mi cuenta', 'zztheme'); ?>">
                         <svg viewBox="0 0 24 24" width="22" height="22" fill="none" stroke="currentColor" stroke-width="1.5">
                             <path d="M20 21v-2a4 4 0 0 0-4-4H8a4 4 0 0 0-4 4v2"/>
                             <circle cx="12" cy="7" r="4"/>
                         </svg>
-                        <span class="header-action__label">
-                            <?php echo is_user_logged_in() ? esc_html(wp_get_current_user()->display_name) : esc_html__('Cuenta', 'zztheme'); ?>
-                        </span>
+                        <span class="header-action__label"><?php esc_html_e('Cuenta', 'zztheme'); ?></span>
                     </a>
+                    <?php endif; ?>
 
                     <?php
                     $wl_pages = get_pages(['meta_key' => '_wp_page_template', 'meta_value' => 'page-wishlist.php', 'number' => 1]);

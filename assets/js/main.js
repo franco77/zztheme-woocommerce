@@ -927,6 +927,44 @@
         });
     }
 
+    /* ── Dropdown de cuenta (usuario logueado) ──────────────────────────── */
+    function initAccountDropdown() {
+        var wrapper  = document.querySelector('.header-account');
+        if (!wrapper) return;
+
+        var btn      = wrapper.querySelector('.header-account__btn');
+        var dropdown = wrapper.querySelector('.header-account__dropdown');
+        if (!btn || !dropdown) return;
+
+        function open() {
+            btn.setAttribute('aria-expanded', 'true');
+            dropdown.setAttribute('aria-hidden', 'false');
+            dropdown.classList.add('is-open');
+        }
+
+        function close() {
+            btn.setAttribute('aria-expanded', 'false');
+            dropdown.setAttribute('aria-hidden', 'true');
+            dropdown.classList.remove('is-open');
+        }
+
+        btn.addEventListener('click', function (e) {
+            e.stopPropagation();
+            btn.getAttribute('aria-expanded') === 'true' ? close() : open();
+        });
+
+        document.addEventListener('click', function (e) {
+            if (!wrapper.contains(e.target)) close();
+        });
+
+        document.addEventListener('keydown', function (e) {
+            if (e.key === 'Escape' && dropdown.classList.contains('is-open')) {
+                close();
+                btn.focus();
+            }
+        });
+    }
+
     document.addEventListener('DOMContentLoaded', function () {
         initMobileMenu();
         initDarkMode();
@@ -946,6 +984,7 @@
         initCartFeedback();
         initCategoriesDropdown();
         initHeroSlider();
+        initAccountDropdown();
     });
 
 })();
