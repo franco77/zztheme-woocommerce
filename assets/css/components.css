@@ -1961,7 +1961,7 @@ span.onsale,
 }
 
 .header-account__btn {
-  /* Resetea los estilos que base.css aplica a todos los <button> */
+  /* Resetea line-height y letter-spacing que base.css aplica a <button> */
   line-height: var(--zz-line-height);
   letter-spacing: normal;
 }

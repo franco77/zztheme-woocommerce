@@ -166,6 +166,7 @@ input[type="button"] {
     text-decoration: none;
     transition: background-color var(--zz-transition), border-color var(--zz-transition), color var(--zz-transition);
     letter-spacing: 0.02em;
+    margin-bottom: 0; /* anula margin-bottom:1rem de Milligram */
 }
 
 .button:hover,
