@@ -54,7 +54,7 @@
 
 /* Sección de ofertas — fondo ámbar muy suave */
 .home-section--sale {
-  background: linear-gradient(180deg, #FFFBF0 0%, #F5F7FA 100%);
+  background: linear-gradient(1deg, #fcf4de 0%, #ffffff 100%);
 }
 
 /* Eyebrow label — etiqueta pequeña sobre el h2 */
@@ -74,7 +74,7 @@
 
 /* Línea decorativa bajo el h2 centrado */
 .section-header--center h2::after {
-  content: '';
+  content: "";
   display: block;
   width: 48px;
   height: 3px;
@@ -480,18 +480,18 @@
 
 /* Esquema oscuro (por defecto) */
 .site-header__nav {
-  --nav-bg:              var(--zz-dark);
-  --nav-border-bottom:   transparent;
-  --nav-link:            rgba(255, 255, 255, 0.88);
-  --nav-link-hover:      #ffffff;
-  --nav-link-hover-bg:   rgba(255, 255, 255, 0.10);
-  --nav-active-line:     transparent;
-  --nav-muted:           rgba(255, 255, 255, 0.70);
-  --nav-icon:            #ffffff;
-  --nav-dm-border:       rgba(255, 255, 255, 0.25);
-  --nav-dm-color:        rgba(255, 255, 255, 0.80);
-  --nav-dm-hover-bg:     rgba(255, 255, 255, 0.10);
-  --nav-dm-hover-color:  #ffffff;
+  --nav-bg: var(--zz-dark);
+  --nav-border-bottom: transparent;
+  --nav-link: rgba(255, 255, 255, 0.88);
+  --nav-link-hover: #ffffff;
+  --nav-link-hover-bg: rgba(255, 255, 255, 0.1);
+  --nav-active-line: transparent;
+  --nav-muted: rgba(255, 255, 255, 0.7);
+  --nav-icon: #ffffff;
+  --nav-dm-border: rgba(255, 255, 255, 0.25);
+  --nav-dm-color: rgba(255, 255, 255, 0.8);
+  --nav-dm-hover-bg: rgba(255, 255, 255, 0.1);
+  --nav-dm-hover-color: #ffffff;
 
   background-color: var(--nav-bg);
   border-bottom: 1px solid var(--nav-border-bottom);
@@ -502,18 +502,18 @@
 
 /* Esquema claro */
 .site-header__nav--light {
-  --nav-bg:              #ffffff;
-  --nav-border-bottom:   var(--zz-border);
-  --nav-link:            var(--zz-text);
-  --nav-link-hover:      var(--zz-primary);
-  --nav-link-hover-bg:   rgba(29, 110, 250, 0.07);
-  --nav-active-line:     var(--zz-primary);
-  --nav-muted:           var(--zz-text-light);
-  --nav-icon:            var(--zz-dark);
-  --nav-dm-border:       var(--zz-border);
-  --nav-dm-color:        var(--zz-text);
-  --nav-dm-hover-bg:     var(--zz-surface);
-  --nav-dm-hover-color:  var(--zz-primary);
+  --nav-bg: #ffffff;
+  --nav-border-bottom: var(--zz-border);
+  --nav-link: var(--zz-text);
+  --nav-link-hover: var(--zz-primary);
+  --nav-link-hover-bg: rgba(29, 110, 250, 0.07);
+  --nav-active-line: var(--zz-primary);
+  --nav-muted: var(--zz-text-light);
+  --nav-icon: var(--zz-dark);
+  --nav-dm-border: var(--zz-border);
+  --nav-dm-color: var(--zz-text);
+  --nav-dm-hover-bg: var(--zz-surface);
+  --nav-dm-hover-color: var(--zz-primary);
 }
 
 .site-header__nav-row {
@@ -598,7 +598,7 @@
 
 /* Indicador inferior para ítem activo (visible en variante clara) */
 .main-navigation ul li a::after {
-  content: '';
+  content: "";
   position: absolute;
   bottom: 0;
   left: 16px;
