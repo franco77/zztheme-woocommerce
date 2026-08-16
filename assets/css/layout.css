@@ -1141,6 +1141,21 @@
     gap: 12px;
   }
 
+  /* Ocultar etiquetas de texto en iconos del header — libera espacio para el carrito */
+  .header-action__label {
+    display: none;
+  }
+
+  /* Reducir gap entre iconos para que quepan en pantallas angostas */
+  .site-header__actions {
+    gap: 4px;
+  }
+
+  /* Mostrar botón lupa mobile */
+  .header-search-toggle {
+    display: flex;
+  }
+
   .header-right-info {
     display: flex;
     margin-left: auto; /* empuja el toggle al extremo derecho */

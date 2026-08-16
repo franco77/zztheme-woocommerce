@@ -2096,3 +2096,274 @@ html.dark-mode .header-account__dropdown {
     min-width: 210px;
   }
 }
+
+/* ==========================================================================
+   MOBILE SEARCH OVERLAY
+   ========================================================================== */
+
+/* El botón lupa solo es visible en mobile — layout.css lo muestra a ≤768px */
+.header-search-toggle {
+  display: none;
+  background: none;
+  border: none;
+  padding: 8px;
+  color: var(--zz-text);
+  cursor: pointer;
+  line-height: 1;
+  letter-spacing: normal;
+  margin-bottom: 0;
+  border-radius: var(--zz-radius);
+  transition: color var(--zz-transition), background var(--zz-transition);
+}
+
+.header-search-toggle:hover {
+  color: var(--zz-primary);
+  background: var(--zz-surface);
+}
+
+/* Backdrop del overlay */
+.mobile-search-overlay {
+  position: fixed;
+  inset: 0;
+  z-index: 100001;
+  background: rgba(12, 27, 51, 0.55);
+  backdrop-filter: blur(3px);
+  -webkit-backdrop-filter: blur(3px);
+  opacity: 0;
+  visibility: hidden;
+  transition: opacity 0.22s ease, visibility 0s linear 0.22s;
+}
+
+.mobile-search-overlay.is-open {
+  opacity: 1;
+  visibility: visible;
+  transition: opacity 0.22s ease, visibility 0s linear 0s;
+}
+
+/* Panel que desliza desde arriba */
+.mobile-search-overlay__inner {
+  position: absolute;
+  top: 0;
+  left: 0;
+  right: 0;
+  background: var(--zz-bg);
+  padding: 14px 16px;
+  transform: translateY(-8px);
+  transition: transform 0.25s cubic-bezier(0.4, 0, 0.2, 1);
+  box-shadow: 0 8px 32px rgba(12, 27, 51, 0.18);
+}
+
+.mobile-search-overlay.is-open .mobile-search-overlay__inner {
+  transform: translateY(0);
+}
+
+/* Fila del formulario */
+.mobile-search-overlay__form {
+  display: flex;
+  align-items: center;
+  gap: 10px;
+}
+
+/* Campo con ícono incrustado */
+.mobile-search-overlay__field {
+  position: relative;
+  flex: 1;
+  display: flex;
+  align-items: center;
+}
+
+.mobile-search-overlay__icon {
+  position: absolute;
+  left: 14px;
+  top: 50%;
+  transform: translateY(-50%);
+  color: var(--zz-text-light);
+  pointer-events: none;
+  flex-shrink: 0;
+}
+
+.mobile-search-overlay__input {
+  width: 100%;
+  padding: 11px 14px 11px 44px;
+  font-size: 1rem;
+  font-family: var(--zz-font);
+  color: var(--zz-text);
+  background: var(--zz-surface);
+  border: 1.5px solid var(--zz-border);
+  border-radius: var(--zz-radius-pill);
+  outline: none;
+  transition: border-color var(--zz-transition), background var(--zz-transition), box-shadow var(--zz-transition);
+  -webkit-appearance: none;
+  appearance: none;
+}
+
+.mobile-search-overlay__input:focus {
+  border-color: var(--zz-primary);
+  background: var(--zz-bg);
+  box-shadow: 0 0 0 3px rgba(29, 110, 250, 0.12);
+}
+
+/* Botón X para cerrar */
+.mobile-search-overlay__close {
+  flex-shrink: 0;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  width: 40px;
+  height: 40px;
+  padding: 0;
+  margin-bottom: 0;
+  background: var(--zz-surface);
+  border: 1px solid var(--zz-border);
+  border-radius: 50%;
+  color: var(--zz-text);
+  cursor: pointer;
+  line-height: 1;
+  letter-spacing: normal;
+  transition: background var(--zz-transition), border-color var(--zz-transition), color var(--zz-transition);
+}
+
+.mobile-search-overlay__close:hover {
+  background: var(--zz-primary);
+  border-color: var(--zz-primary);
+  color: #fff;
+}
+
+/* Área de resultados */
+.mobile-search-overlay__results {
+  padding-top: 4px;
+  max-height: calc(100svh - 120px);
+  overflow-y: auto;
+  -webkit-overflow-scrolling: touch;
+}
+
+.mobile-search-overlay__loading {
+  display: flex;
+  align-items: center;
+  gap: 10px;
+  padding: 16px 0;
+  color: var(--zz-text-light);
+  font-size: 0.875rem;
+}
+
+.mobile-search-overlay__empty {
+  padding: 24px 0;
+  color: var(--zz-text-light);
+  font-size: 0.9rem;
+  text-align: center;
+}
+
+.mobile-search-overlay__list {
+  list-style: none;
+  margin: 8px 0 0;
+  padding: 0;
+}
+
+.mobile-search-overlay__list li {
+  margin-bottom: 0;
+}
+
+.mobile-search-overlay__item {
+  display: flex;
+  align-items: center;
+  gap: 12px;
+  padding: 10px 8px;
+  border-bottom: 1px solid var(--zz-border);
+  color: var(--zz-text);
+  text-decoration: none;
+  border-radius: var(--zz-radius);
+  transition: background var(--zz-transition);
+}
+
+.mobile-search-overlay__item:hover {
+  background: var(--zz-surface);
+  color: var(--zz-text);
+  text-decoration: none;
+}
+
+.mobile-search-overlay__item img {
+  width: 48px;
+  height: 48px;
+  object-fit: cover;
+  border-radius: var(--zz-radius);
+  flex-shrink: 0;
+  border: 1px solid var(--zz-border);
+}
+
+.mobile-search-overlay__item-info {
+  flex: 1;
+  min-width: 0;
+}
+
+.mobile-search-overlay__item-name {
+  display: block;
+  font-weight: 600;
+  font-size: 0.875rem;
+  color: var(--zz-dark);
+  white-space: nowrap;
+  overflow: hidden;
+  text-overflow: ellipsis;
+  line-height: 1.3;
+}
+
+.mobile-search-overlay__item-cat {
+  display: block;
+  font-size: 0.75rem;
+  color: var(--zz-text-light);
+  margin-top: 2px;
+}
+
+.mobile-search-overlay__item-price {
+  font-size: 0.875rem;
+  font-weight: 700;
+  color: var(--zz-primary);
+  flex-shrink: 0;
+  font-variant-numeric: tabular-nums;
+}
+
+.mobile-search-overlay__all {
+  display: block;
+  padding: 14px 0;
+  text-align: center;
+  font-size: 0.875rem;
+  font-weight: 600;
+  color: var(--zz-primary);
+  border-top: 1px solid var(--zz-border);
+  text-decoration: none;
+  margin-top: 4px;
+  transition: color var(--zz-transition);
+}
+
+.mobile-search-overlay__all:hover {
+  color: var(--zz-primary-dark);
+  text-decoration: none;
+}
+
+/* Dark mode */
+html.dark-mode .mobile-search-overlay {
+  background: rgba(0, 0, 0, 0.65);
+}
+
+html.dark-mode .mobile-search-overlay__inner {
+  background: var(--zz-surface);
+  box-shadow: 0 8px 32px rgba(0, 0, 0, 0.4);
+}
+
+html.dark-mode .mobile-search-overlay__input {
+  background: rgba(255, 255, 255, 0.06);
+  border-color: rgba(255, 255, 255, 0.12);
+  color: var(--zz-text);
+}
+
+html.dark-mode .mobile-search-overlay__input:focus {
+  background: rgba(255, 255, 255, 0.1);
+}
+
+html.dark-mode .mobile-search-overlay__close {
+  background: rgba(255, 255, 255, 0.08);
+  border-color: rgba(255, 255, 255, 0.12);
+}
+
+html.dark-mode .mobile-search-overlay__item-name {
+  color: var(--zz-text);
+}

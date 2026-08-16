@@ -118,6 +118,18 @@
 
             <!-- Acciones: cuenta, carrito -->
             <div class="site-header__actions">
+
+                <!-- Lupa mobile — visible solo en ≤768px via CSS -->
+                <button class="header-action header-search-toggle"
+                        aria-label="<?php esc_attr_e('Buscar productos', 'zztheme'); ?>"
+                        aria-expanded="false"
+                        aria-controls="mobile-search-overlay">
+                    <svg viewBox="0 0 24 24" width="22" height="22" fill="none" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round">
+                        <circle cx="11" cy="11" r="8"/>
+                        <line x1="21" y1="21" x2="16.65" y2="16.65"/>
+                    </svg>
+                </button>
+
                 <?php if (class_exists('WooCommerce')) : ?>
 
                     <?php if (is_user_logged_in()) :
@@ -273,6 +285,36 @@
                 </button>
             </div>
 
+        </div>
+    </div>
+
+
+    <!-- ── Overlay de búsqueda mobile ─────────────────────────────────────── -->
+    <div id="mobile-search-overlay" class="mobile-search-overlay" aria-hidden="true" role="dialog" aria-label="<?php esc_attr_e('Buscar productos', 'zztheme'); ?>">
+        <div class="mobile-search-overlay__inner">
+            <form class="mobile-search-overlay__form" method="get" action="<?php echo esc_url(home_url('/')); ?>" role="search">
+                <div class="mobile-search-overlay__field">
+                    <svg class="mobile-search-overlay__icon" viewBox="0 0 24 24" width="18" height="18" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" aria-hidden="true">
+                        <circle cx="11" cy="11" r="8"/>
+                        <line x1="21" y1="21" x2="16.65" y2="16.65"/>
+                    </svg>
+                    <input type="search" name="s"
+                           class="mobile-search-overlay__input"
+                           placeholder="<?php esc_attr_e('¿Qué estás buscando?', 'zztheme'); ?>"
+                           autocomplete="off"
+                           aria-label="<?php esc_attr_e('Buscar productos', 'zztheme'); ?>">
+                    <?php if (class_exists('WooCommerce')) : ?>
+                    <input type="hidden" name="post_type" value="product">
+                    <?php endif; ?>
+                </div>
+                <button type="button" class="mobile-search-overlay__close" aria-label="<?php esc_attr_e('Cerrar búsqueda', 'zztheme'); ?>">
+                    <svg viewBox="0 0 24 24" width="18" height="18" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" aria-hidden="true">
+                        <line x1="18" y1="6" x2="6" y2="18"/>
+                        <line x1="6" y1="6" x2="18" y2="18"/>
+                    </svg>
+                </button>
+            </form>
+            <div class="mobile-search-overlay__results" id="mobile-search-results" aria-live="polite"></div>
         </div>
     </div>
 
