@@ -1251,6 +1251,12 @@ section.related.products {
     grid-template-columns: repeat(2, 1fr);
   }
 
+  /* Ofertas Especiales: 1 columna en mobile para mejor legibilidad */
+  .home-section--sale .woocommerce ul.products,
+  .home-section--sale .woocommerce ul.products.columns-4 {
+    grid-template-columns: 1fr;
+  }
+
   .sp {
     grid-template-columns: 1fr;
     gap: 24px;
@@ -1355,6 +1361,19 @@ section.related.products {
   .woocommerce-page ul.products {
     grid-template-columns: 1fr 1fr;
     gap: 12px;
+  }
+}
+
+/* ── Tienda: 1 columna en teléfonos (≤600px) ───────────────────────────────── */
+/* Aplica a: tienda principal, archivos de categoría y etiqueta de producto.    */
+/* Especificidad (0,3,1) supera las reglas genéricas de 2 columnas sin !import. */
+@media (max-width: 600px) {
+  .woocommerce-shop .wc-content ul.products,
+  .tax-product_cat .wc-content ul.products,
+  .tax-product_tag .wc-content ul.products,
+  .post-type-archive-product .wc-content ul.products {
+    grid-template-columns: 1fr;
+    gap: 16px;
   }
 }
 

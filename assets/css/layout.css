@@ -424,11 +424,16 @@
   background: var(--zz-primary-dark);
 }
 
+/* Lupa mobile: oculta en desktop, visible en ≤768px (ver media query abajo) */
+.header-search-toggle {
+  display: none;
+}
+
 /* Header actions */
 .site-header__actions {
   display: flex;
   align-items: center;
-  gap: 8px;
+  gap: 12px;
   margin-left: auto;
 }
 
@@ -1077,6 +1082,15 @@
   }
 
   .header-categories-btn {
+    width: 40px;
+    height: 40px;
+    padding: 0;
+    justify-content: center;
+    gap: 0;
+  }
+
+  .header-cats__label,
+  .header-cats__chevron {
     display: none;
   }
 

@@ -301,18 +301,11 @@ span.onsale,
   cursor: pointer;
   white-space: nowrap;
   transition: background-color var(--zz-transition);
-  /* Anular height: 3.8rem y line-height: 3.8rem que inyecta Milligram en <button> */
   height: auto;
   line-height: 1;
   letter-spacing: normal;
   text-transform: none;
-}
-
-.header-categories-btn:hover,
-.header-cats:hover .header-categories-btn,
-.header-categories-btn[aria-expanded="true"] {
-  background: var(--zz-primary-dark);
-  color: #fff;
+  margin-bottom: 0;
 }
 
 .header-cats__chevron {
@@ -323,6 +316,13 @@ span.onsale,
 .header-cats:hover .header-cats__chevron,
 .header-categories-btn[aria-expanded="true"] .header-cats__chevron {
   transform: rotate(180deg);
+}
+
+.header-categories-btn:hover,
+.header-cats:hover .header-categories-btn,
+.header-categories-btn[aria-expanded="true"] {
+  background: var(--zz-primary-dark);
+  color: #fff;
 }
 
 /* Panel desplegable */
@@ -1598,12 +1598,12 @@ span.onsale,
 @media (max-width: 480px) {
   .banner-card__content {
     max-width: 100%;
-    padding: 20px 16px;
+    /*padding: 20px 16px;*/
   }
 
   .banner-card {
     background-position: bottom right;
-    background-size: 40%;
+    /*background-size: 40%;*/
     min-height: 180px;
   }
 }
@@ -2101,9 +2101,8 @@ html.dark-mode .header-account__dropdown {
    MOBILE SEARCH OVERLAY
    ========================================================================== */
 
-/* El botón lupa solo es visible en mobile — layout.css lo muestra a ≤768px */
+/* El botón lupa — display controlado por layout.css (none en desktop, flex en mobile) */
 .header-search-toggle {
-  display: none;
   background: none;
   border: none;
   padding: 8px;
@@ -2113,7 +2112,9 @@ html.dark-mode .header-account__dropdown {
   letter-spacing: normal;
   margin-bottom: 0;
   border-radius: var(--zz-radius);
-  transition: color var(--zz-transition), background var(--zz-transition);
+  transition:
+    color var(--zz-transition),
+    background var(--zz-transition);
 }
 
 .header-search-toggle:hover {
@@ -2131,13 +2132,17 @@ html.dark-mode .header-account__dropdown {
   -webkit-backdrop-filter: blur(3px);
   opacity: 0;
   visibility: hidden;
-  transition: opacity 0.22s ease, visibility 0s linear 0.22s;
+  transition:
+    opacity 0.22s ease,
+    visibility 0s linear 0.22s;
 }
 
 .mobile-search-overlay.is-open {
   opacity: 1;
   visibility: visible;
-  transition: opacity 0.22s ease, visibility 0s linear 0s;
+  transition:
+    opacity 0.22s ease,
+    visibility 0s linear 0s;
 }
 
 /* Panel que desliza desde arriba */
@@ -2192,7 +2197,10 @@ html.dark-mode .header-account__dropdown {
   border: 1.5px solid var(--zz-border);
   border-radius: var(--zz-radius-pill);
   outline: none;
-  transition: border-color var(--zz-transition), background var(--zz-transition), box-shadow var(--zz-transition);
+  transition:
+    border-color var(--zz-transition),
+    background var(--zz-transition),
+    box-shadow var(--zz-transition);
   -webkit-appearance: none;
   appearance: none;
 }
@@ -2220,7 +2228,10 @@ html.dark-mode .header-account__dropdown {
   cursor: pointer;
   line-height: 1;
   letter-spacing: normal;
-  transition: background var(--zz-transition), border-color var(--zz-transition), color var(--zz-transition);
+  transition:
+    background var(--zz-transition),
+    border-color var(--zz-transition),
+    color var(--zz-transition);
 }
 
 .mobile-search-overlay__close:hover {
@@ -2366,4 +2377,23 @@ html.dark-mode .mobile-search-overlay__close {
 
 html.dark-mode .mobile-search-overlay__item-name {
   color: var(--zz-text);
+}
+
+/* ── Banner Intermedio ──────────────────────────────────────────────────────── */
+.mid-banner {
+  padding: 0 0 48px;
+}
+
+.mid-banner__link {
+  display: block;
+}
+
+.mid-banner__img {
+  width: 100%;
+  height: auto;
+  display: block;
+  border-radius: var(--zz-radius);
+  max-height: 252px;
+  object-fit: cover;
+  object-position: center;
 }

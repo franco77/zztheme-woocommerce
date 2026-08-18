@@ -41,14 +41,15 @@
             <?php if (class_exists('WooCommerce')) : ?>
                 <!-- Botón categorías con dropdown -->
                 <div class="header-cats">
-                    <button class="header-categories-btn" aria-expanded="false" aria-haspopup="true">
-                        <svg viewBox="0 0 24 24" width="16" height="16" fill="none" stroke="currentColor" stroke-width="2">
+                    <button class="header-categories-btn" aria-expanded="false" aria-haspopup="true"
+                            aria-label="<?php esc_attr_e('Categorías de productos', 'zztheme'); ?>">
+                        <svg viewBox="0 0 24 24" width="16" height="16" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" aria-hidden="true">
                             <line x1="3" y1="6" x2="21" y2="6"/>
                             <line x1="3" y1="12" x2="21" y2="12"/>
                             <line x1="3" y1="18" x2="21" y2="18"/>
                         </svg>
-                        <?php esc_html_e('Categorías', 'zztheme'); ?>
-                        <svg class="header-cats__chevron" viewBox="0 0 24 24" width="13" height="13" fill="none" stroke="currentColor" stroke-width="2.5">
+                        <span class="header-cats__label"><?php esc_html_e('Categorías', 'zztheme'); ?></span>
+                        <svg class="header-cats__chevron" viewBox="0 0 24 24" width="13" height="13" fill="none" stroke="currentColor" stroke-width="2.5" aria-hidden="true">
                             <polyline points="6 9 12 15 18 9"/>
                         </svg>
                     </button>

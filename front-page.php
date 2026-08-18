@@ -14,6 +14,7 @@ get_header();
     <?php get_template_part('template-parts/home/featured-products'); ?>
     <?php get_template_part('template-parts/home/banners'); ?>
     <?php get_template_part('template-parts/home/new-products'); ?>
+    <?php get_template_part('template-parts/home/mid-banner'); ?>
     <?php get_template_part('template-parts/home/sale-products'); ?>
 
     <?php

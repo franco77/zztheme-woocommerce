@@ -248,6 +248,46 @@ add_action('customize_register', function (WP_Customize_Manager $wp_customize) {
         'priority'    => 30,
     ]);
 
+    /* ── Banner Intermedio (entre Recién Llegados y Ofertas) ──────────────── */
+    $wp_customize->add_section('zz_mid_banner', [
+        'title'    => __('Banner Intermedio', 'zztheme'),
+        'panel'    => 'zz_home_panel',
+        'priority' => 24,
+    ]);
+
+    $wp_customize->add_setting('zz_mid_banner_image', [
+        'default'           => 0,
+        'sanitize_callback' => 'absint',
+    ]);
+    $wp_customize->add_control(new WP_Customize_Media_Control($wp_customize, 'zz_mid_banner_image', [
+        'label'       => __('Imagen del banner (1200 × 252 px recomendado)', 'zztheme'),
+        'description' => __('Si no hay imagen, la sección no se mostrará.', 'zztheme'),
+        'section'     => 'zz_mid_banner',
+        'mime_type'   => 'image',
+        'priority'    => 10,
+    ]));
+
+    $wp_customize->add_setting('zz_mid_banner_url', [
+        'default'           => '',
+        'sanitize_callback' => 'esc_url_raw',
+    ]);
+    $wp_customize->add_control('zz_mid_banner_url', [
+        'label'       => __('Enlace al hacer clic (opcional)', 'zztheme'),
+        'section'     => 'zz_mid_banner',
+        'type'        => 'url',
+        'priority'    => 20,
+    ]);
+
+    $wp_customize->add_setting('zz_mid_banner_alt', [
+        'default'           => '',
+        'sanitize_callback' => 'sanitize_text_field',
+    ]);
+    $wp_customize->add_control('zz_mid_banner_alt', [
+        'label'       => __('Texto alternativo (accesibilidad)', 'zztheme'),
+        'section'     => 'zz_mid_banner',
+        'priority'    => 30,
+    ]);
+
     /* ── Carrusel de Categorías ─────────────────────────────────────────── */
     $wp_customize->add_section('zz_catgrid', [
         'title'    => __('Carrusel de Categorías', 'zztheme'),
